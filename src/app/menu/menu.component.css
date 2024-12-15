@@ -1,0 +1,34 @@
+/* menu.component.css */
+.card {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .modal-header {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .modal-body {
+    background-color: #f8f9fa;
+  }
+  
+  .img-thumbnail {
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+  
+  .img-thumbnail:hover {
+    transform: scale(1.1);
+  }
+  .food-detai{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Adjust column size */
+    word-wrap: break-word; /* Ensure text wraps within the container */
+    word-break: break-all; /* Break words at any character */
+    white-space: normal; /* Ensure normal text wrapping */
+  }
