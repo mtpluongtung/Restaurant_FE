@@ -24,25 +24,13 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-               "src/favicon.ico",
-              "src/assets"
+              }
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
-              "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
-              "node_modules/animate.css/animate.min.css",
-              "node_modules/primeng/resources/themes/lara-light-indigo/theme.css", 
-              "node_modules/primeng/resources/primeng.min.css",  
-              "node_modules/primeicons/primeicons.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [
-               "node_modules/jquery/dist/jquery.min.js",
-                "node_modules/owl.carousel/dist/owl.carousel.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -95,20 +83,12 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              "src/favicon.ico",
-              "src/assets"
+              }
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
-              "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
-              "node_modules/animate.css/animate.min.css",
-              "node_modules/primeng/resources/themes/lara-light-indigo/theme.css", 
-              "node_modules/primeng/resources/primeng.min.css",  
-              "node_modules/primeicons/primeicons.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
             "scripts": []
           }
@@ -117,6 +97,6 @@
     }
   },
   "cli": {
-    "analytics": "6ab66844-86ff-46fc-8f9c-e43cc149bf8a"
+    "analytics": "8ef04c87-b7a1-44d8-851e-63f560dabbb2"
   }
 }

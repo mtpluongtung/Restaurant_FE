@@ -4,11 +4,9 @@ import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  standalone: true,
-  styleUrls: ['./menu.component.css'],
-  imports: [CommonModule]
+    selector: 'app-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
   setMeals: SetMeal[] = [

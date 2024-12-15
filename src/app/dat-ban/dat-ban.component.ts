@@ -2,16 +2,16 @@ import { Ban } from './../_model/ban.model';
 import { Component, OnInit } from '@angular/core';
 import { BanService } from '../_service/ban.services';
 import { CommonModule } from '@angular/common';
-import { Dialog } from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { Order } from '../_model/Order.model';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-dat-ban',
-  templateUrl: './dat-ban.component.html',
-  standalone: true,
-  styleUrls: ['./dat-ban.component.css'],
-  imports: [CommonModule, Dialog, FormsModule]
+    selector: 'app-dat-ban',
+    templateUrl: './dat-ban.component.html',
+    styleUrls: ['./dat-ban.component.css'],
+    imports: [CommonModule, DialogModule, FormsModule],
+    standalone: true
 })
 export class DatBanComponent implements OnInit {
 
