@@ -1,34 +1,44 @@
-/* menu.component.css */
-.card {
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-  .modal-header {
-    background-color: #343a40;
-    color: #fff;
-  }
-  
-  .modal-body {
-    background-color: #f8f9fa;
-  }
-  
-  .img-thumbnail {
-    border-radius: 8px;
-    transition: transform 0.2s;
-  }
-  
-  .img-thumbnail:hover {
-    transform: scale(1.1);
-  }
-  .food-detai{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Adjust column size */
-    word-wrap: break-word; /* Ensure text wraps within the container */
-    word-break: break-all; /* Break words at any character */
-    white-space: normal; /* Ensure normal text wrapping */
-  }
+.menu-order{
+  display: flex; /* Kích hoạt Flexbox */
+  justify-content: space-between; /* Căn đều khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+  gap: 10px; /* Khoảng cách giữa các phần tử */
+  background-color: red;
+}
+.menu-tab{
+  height: 100vh;
+  width: 20vw;
+  background-color: blue;
+}
+.memu-item{
+  height:100vh;
+  width: 80vw;
+  background-color: yellow;
+  overflow-y: scroll;
+}
+.food-item{
+  display: flex;
+  justify-content: space-between; /* Căn đều khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+  gap: 10px; /* Khoảng cách giữa các phần tử */
+  background-color: red;
+  width: 100%;
+  height: 250px;
+}
+.food-item img{
+  height: 100%;
+  width: 40%;
+}
+.food-item-card{
+  height: 100%;
+  width: 60%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between; /* Căn đều khoảng cách giữa các phần tử */
+  flex-direction: column;
+}
+::ng-deep .p-dialog-footer{
+  padding: 15px !important;
+  display: flex;
+  justify-content: space-between !important; 
+}

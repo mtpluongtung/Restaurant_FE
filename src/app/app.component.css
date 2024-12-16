@@ -1,8 +1,12 @@
 .page-body {
   padding-top: 10%
 }
+
 body {
- background-size: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ khu vực */
-  background-repeat: no-repeat; /* Không lặp lại hình nền */
-  background-position: center; /* Canh giữa hình nền */
+  background-size: cover;
+  /* Đảm bảo hình ảnh bao phủ toàn bộ khu vực */
+  background-repeat: no-repeat;
+  /* Không lặp lại hình nền */
+  background-position: center;
+  /* Canh giữa hình nền */
 }

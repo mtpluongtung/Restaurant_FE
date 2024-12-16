@@ -1,7 +1,7 @@
 export class Ban {
     id: number;
     tenBan: string;
-    trangThai: number;
+    trangThai: boolean;
     tang: string;
     soNguoi: number;
     soGhe: number;
@@ -9,7 +9,7 @@ export class Ban {
     constructor(
       id: number,
       tenBan: string,
-      trangThai: number,
+      trangThai: boolean,
       tang: string,
       soNguoi: number,
       soGhe: number

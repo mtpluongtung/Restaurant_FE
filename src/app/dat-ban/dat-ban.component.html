@@ -1,16 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3" *ngFor="let ban of banList" style=" padding-bottom: 15px;">
+    <div class="col-sm-2" *ngFor="let ban of banList" style=" padding-bottom: 15px;">
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">{{ban.tenBan}}</h5>
-          <p class="card-text">Tầng : {{ban.tang}}</p>
-          <p class="card-text">Số ghế: {{ban.soGhe}}</p>
-          <span class="badge" [ngClass]="ban.trangThai === 1 ? 'bg-warning' : 'bg-success'">
-            {{ ban.trangThai === 1 ? 'Đang sử dụng' : 'Sẵn sàng' }}
+          <span class="badge" [ngClass]="ban.trangThai? 'bg-warning' : 'bg-success'">
+            {{ ban.trangThai  ? 'Đang sử dụng' : 'Sẵn sàng' }}
           </span>
-          <button [ngClass]="ban.trangThai === 1 ? 'btn btn-secondary mt-3' : 'btn btn-success mt-3'" [disabled]="ban.trangThai === 1" (click)="DatBan(ban)">
-            {{ ban.trangThai === 0 ? 'Đặt bàn' : 'Không khả dụng' }}
+          <button [ngClass]="ban.trangThai  ? 'btn btn-secondary mt-3' : 'btn btn-success mt-3'" [disabled]="ban.trangThai" (click)="DatBan(ban)">
+            {{ ban.trangThai ? 'Không khả dụng' : 'Đặt bàn'  }}
           </button>
         </div>
       </div>
@@ -19,17 +17,24 @@
 </div>
 
 
-<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-    <div class="flex items-center gap-4 mb-4">
-        <label for="username" class="font-semibold w-24">Tên khách hàng</label>
-        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+<p-dialog header="Tạo Order" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <form>
+    <div class="mb-3">
+      <label for="CustomerName" class="form-label">Tên khách hàng</label>
+      <input type="CustomerName" name="CustomerName" class="form-control" id="CustomerName" aria-describedby="emailHelp" [(ngModel)]="OrderModle.TenKhachHang">
     </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="email" class="font-semibold w-24">Số điện thoại</label>
-        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+    <div class="mb-3">
+      <label for="phone" class="form-label">Số điện thoại</label>
+      <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="OrderModle.Phone">
     </div>
-    <div class="flex justify-end gap-2">
-        <!-- <button label="Cancel" severity="secondary" (click)="visible = false" />
-        <button label="Save" (click)="visible = false" /> -->
+    <div class="mb-3">
+      <label for="phone" class="form-label">Số người</label>
+      <input type="text" class="form-control" id="SoluongKH" name="SoluongKH" [(ngModel)]="OrderModle.SoluongKH">
     </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="exampleCheck1" [(ngModel)]="OrderModle.CustomerExample" (ngModelChange)="AutoFilCustomer()">
+      <label class="form-check-label" for="exampleCheck1">Sử dụng mặc định</label>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="CreateOrder()">Tạo Order</button>
+  </form>
 </p-dialog>

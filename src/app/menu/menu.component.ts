@@ -2,53 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { SetMeal } from '../type/FoodItem';
 import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Dialog } from 'primeng/dialog';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',
-    styleUrls: ['./menu.component.css']
+    styleUrls: ['./menu.component.css'],
+    standalone: true,
+    imports: [CommonModule,Dialog]
 })
 export class MenuComponent implements OnInit {
-  setMeals: SetMeal[] = [
-    {
-      id: 1,
-      imageUrl: 'https://cdn.lauphan.com:9998/api/file/img?PathFile=/Menu/37/menu1685431458177.png',
-      name: 'Set Món 1',
-      items: [
-        { id: 1, name: 'Món 1', description: 'Mô tả món 1', imageUrl: 'url-to-image1' },
-        { id: 2, name: 'Món 2', description: 'Mô tả món 2', imageUrl: 'url-to-image2' }
-      ]
-    },
-    {
-      id: 1,
-      name: 'Set Món 2',
-      imageUrl: 'https://cdn.lauphan.com:9998/api/file/img?PathFile=/Menu/37/menu1685431458177.png',
-      items: [
-        { id: 1, name: 'Món 1', description: 'Mô tả món 1', imageUrl: 'url-to-image1' },
-        { id: 2, name: 'Món 2', description: 'Mô tả món 2', imageUrl: 'url-to-image2' }
-      ]
-    },
-    {
-      id: 1,
-      name: 'Set Món 3',
-      imageUrl: 'https://cdn.lauphan.com:9998/api/file/img?PathFile=/Menu/37/menu1685431458177.png',
-      items: [
-        { id: 1, name: 'Món 1', description: 'Mô tả món 1', imageUrl: 'url-to-image1' },
-        { id: 2, name: 'Món 2', description: 'Mô tả món 2', imageUrl: 'url-to-image2' }
-      ]
-    },
-    {
-      id: 1,
-      name: 'Set Món 4',
-      imageUrl: 'https://cdn.lauphan.com:9998/api/file/img?PathFile=/Menu/37/menu1685431458177.png',
-      items: [
-        { id: 1, name: 'Món 1', description: 'Mô tả món 1', imageUrl: 'url-to-image1' },
-        { id: 2, name: 'Món 2', description: 'Mô tả món 2', imageUrl: 'url-to-image2' }
-      ]
-    },
-  ];
+  visible : boolean = false;
+  orderId: string | null = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal,private route: ActivatedRoute) {}
 
   open(content: any, set: SetMeal) {
     this.selectedSet = set;
@@ -57,6 +26,10 @@ export class MenuComponent implements OnInit {
 
   selectedSet: SetMeal | null = null;
   ngOnInit() {
+    this.orderId = this.route.snapshot.paramMap.get('id');
+    console.log('Order ID:', this.orderId);
   }
-  
+  ShowDanhSachMonAn(){
+    this.visible=true;
+  }
 }
