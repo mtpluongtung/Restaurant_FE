@@ -1,44 +1,88 @@
-.menu-order{
-  display: flex; /* Kích hoạt Flexbox */
-  justify-content: space-between; /* Căn đều khoảng cách giữa các phần tử */
-  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
-  gap: 10px; /* Khoảng cách giữa các phần tử */
-  background-color: red;
+.menu-order {
+  display: flex;
+  /* Kích hoạt Flexbox */
+  justify-content: space-between;
+  /* Căn đều khoảng cách giữa các phần tử */
+  align-items: center;
+  /* Căn giữa các phần tử theo chiều dọc */
+  gap: 2px;
+  /* Khoảng cách giữa các phần tử */
+
 }
-.menu-tab{
+
+.menu-tab {
   height: 100vh;
   width: 20vw;
-  background-color: blue;
+  background-color: #2b2b40;
 }
-.memu-item{
-  height:100vh;
+
+.memu-item {
+  height: 100vh;
   width: 80vw;
-  background-color: yellow;
   overflow-y: scroll;
+  background-color: #2b2b40;
 }
-.food-item{
+
+.food-item {
   display: flex;
-  justify-content: space-between; /* Căn đều khoảng cách giữa các phần tử */
-  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
-  gap: 10px; /* Khoảng cách giữa các phần tử */
-  background-color: red;
+  justify-content: space-between;
+  /* Căn đều khoảng cách giữa các phần tử */
+  align-items: center;
+  /* Căn giữa các phần tử theo chiều dọc */
+  gap: 10px;
+  /* Khoảng cách giữa các phần tử */
+  background-color: #2b2b40;
   width: 100%;
-  height: 250px;
+  height: 30vh;
 }
-.food-item img{
+
+.food-item img {
   height: 100%;
   width: 40%;
 }
-.food-item-card{
+
+.food-item-card {
   height: 100%;
   width: 60%;
   padding: 10px;
   display: flex;
-  justify-content: space-between; /* Căn đều khoảng cách giữa các phần tử */
+  justify-content: space-between;
+  /* Căn đều khoảng cách giữa các phần tử */
   flex-direction: column;
+  background-color: transparent;
 }
-::ng-deep .p-dialog-footer{
+
+::ng-deep .p-dialog-footer {
   padding: 15px !important;
   display: flex;
-  justify-content: space-between !important; 
+  justify-content: space-between !important;
+}
+
+.food-item-action button {
+  color: white !important;
+  outline: seashell !important;
+  border: solid 1px seashell !important;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+li a {
+  display: block;
+  color: #ffff;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  border: solid 1px #ffff;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #6e61e0;
+  color: white;
 }

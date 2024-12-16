@@ -1,4 +1,47 @@
-<!-- src/app/home/home.component.html -->
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Website Nha Hang</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="" type="image/x-icon" />
+    <link rel="shortcut icon" href="" type="image/x-icon" />
+    <!-- style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
+        <div class="container">
+            <div class="d-block d-sm-none logo_mobile">
+                <a class="navbar-brand mr-auto mr-lg-0 logo" routerLink="/"><img src="assets/media/logo/logo_dark.png" alt="Logo">
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="offcanvas">
+                <span class="navbar-toggler-icon"><i class="fal fa-bars"></i></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse justify-content-md-center" id="navbarsExampleDefault">
+                <ul class="navbar-nav menu_head">
+                    <li class="nav-item"  routerLink="/menu"><a class="nav-link" title="Thực đơn">Thực đơn</a></li>
+                    <li class="nav-item" routerLink="/dat-ban"><a class="nav-link" title="Đặt bàn">Đặt bàn</a></li>
+                    <!-- <li class="nav-item active d-none d-sm-block">
+                        <a class="nav-link" title="Homepage" routerLink="/">
+                            <div class="logo_me"><img src="assets/media/logo/logo_dark.png" alt="Logo">                            </div>
+                        </a>
+                    </li> -->
+                    <li class="nav-item"><a class="nav-link" title="Ưu đãi & tin tức" routerLink="/tin-tuc">Ưu đãi & tin tức</a></li>
+                    <li class="nav-item"><a class="nav-link" title="Về chúng tôi" routerLink="/gioi-thieu">Về chúng tôi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+   <div class="page-body">
+   <!-- src/app/home/home.component.html -->
 
 <div class="slide_main">
     <div class="slidex">
@@ -83,3 +126,41 @@
         </div>
     </div>
 </section>
+
+   </div>
+    <footer>
+        <a class="gotop" href="#" title="Lên đầu trang"><i class="fas fa-arrow-up"></i></a>
+        <div class="container footer">
+            <div class="row footer_contact">
+                <div class="col-sm-2 logofo">
+                    <p><img src="assets/media/logo/logo.png" alt="Soowoon" width="237" height="160" /></p>
+                </div>
+                <div class="col-sm-6">
+                    <h5 class="tieude_ft">CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ THƯƠNG MẠI PHƯỢNG HOÀNG PION</h5>
+                    <p class="khch-hng"><strong>Trụ sở chính</strong></p>
+                    <p class="khch-hng"><span class="s-76-ng">Số 76 đường Hòa Bình, Phường Thái Học, Thành phố Chí Linh, Hải Dương.</span></p>
+                    <p class="khch-hng"><span class="s-76-ng">GPĐK: 0102721191 cấp ngày 13/09/2021</span></p>
+                    <p class="khch-hng"><span class="s-76-ng">ĐT: 097 497 5918</span></p>
+                    <p class="khch-hng"><span class="s-76-ng">Email: ngominhhoang96gmail.com</span></p>
+                </div>
+
+                <div class="col-sm-4">
+                    <h5 class="tieude_ft">THÔNG TIN</h5>
+                    <div class="menulist">
+                        <ul>
+                            <li class="nav-item"><a class="nav-link" title="Giới thiệu" routerLink="/gioi-thieu">Giới thiệu</a></li>
+                            <li class="nav-item"><a class="nav-link" title="Liên hệ" routerLink="/lien-he">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row copyenito">
+                <div class="col-12 col-sm-12 col-lg-12">
+                    <p>© COPYRIGHT PHƯỢNG HOÀNG PION 2023. ALL RIGHTS RESERVED</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+</body>
+</html>

@@ -1,296 +1,304 @@
 <div class="menu-order">
   <div class="menu-tab">
-    <ul>
-      <li><a href="">Bufe - Combo</a></li>
-      <li><a href="">Đồ ăn</a></li>
-      <li><a href="">Đồ uống</a></li>
+    <ul class="menu-group">
+      <li ><a href="">Bufe - Combo</a></li>
+      <li ><a href="">Đồ ăn</a></li>
+      <li ><a href="">Đồ uống</a></li>
     </ul>
   </div>
   <div class="memu-item">
-    <div class="food-item">
-      <img src="https://lauocviet.vn/wp-content/uploads/2024/03/4-4.jpg">
-      <div class="food-item-card">
+    <div class="food-item border p-2">
+      <img src="https://lauocviet.vn/wp-content/uploads/2024/03/4-4.jpg" class="w-lg-225px rounded w-50">
+      <div class="food-item-card card card-hover-border">
         <div class="food-item-details">
-          <h5>buffe</h5>
-          <h3>Combo 169k</h3>
-          <p>Giá : 169.000đ</p>
+          <div class="d-flex flex-stack gap-5">
+            <div class="d-flex flex-stack gap-2 mb-1">
+              <span class="text-white  mb-3 fs-5 fw-bold">
+                buffet lẩu ốc việt
+              </span>
+
+            </div>
+          </div>
+          <div class="text-white mb-3 fs-1 fw-bold">
+            <span class="mx-10">Combo 169k</span>
+          </div>
+          <div class="d-flex align-items-center text-white mb-10 max-w-70px h-70px fw-bold"
+            style="background: url('images/Frame-price.png'); background-repeat: no-repeat; padding: 8px 16px; font-size: 22px !important; height: 70px;">
+            <span class="mx-10">169.000 VND / Người</span>
+          </div>
         </div>
         <div class="food-item-action">
-          <button (click)="ShowDanhSachMonAn()">Xem danh sách món</button>
-          <button>Thêm vào order</button>
+          <button class="btn btn-outline-primary"  (click)="ShowDanhSachMonAn()">Xem danh sách món</button>
+          <button class="btn btn-outline-primary" style="margin-left: 20px;">Thêm vào order</button>
         </div>
       </div>
     </div>
 
   </div>
 </div>
-<p-dialog
-    header="Danh sách món"
-    [modal]="true"
-    [(visible)]="visible"
-    [style]="{ width: '50rem' }"
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-    [maximizable]="true">
-        <div class="row">
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-            <div class="col-sm-2">
-              <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
-              <span>Thịt bò kobe</span>
-            </div>
-        </div>
-        <ng-template  #footer>
-          <h4>Giá 490k / người</h4>
-          <button label="Quay lại" severity="secondary" class="btn btn btn-warning" (click)="visible = false">Quay lại</button> 
-      </ng-template>
+<p-dialog header="Danh sách món" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+    <div class="col-sm-2">
+      <img src="https://thasofoods.com/wp-content/uploads/2023/02/ba-chi-mo-my.jpeg" alt="">
+      <span>Thịt bò kobe</span>
+    </div>
+  </div>
+  <ng-template #footer>
+    <h4>Giá 490k / người</h4>
+    <button label="Quay lại" severity="secondary" class="btn btn btn-warning" (click)="visible = false">Quay
+      lại</button>
+  </ng-template>
 </p-dialog>
