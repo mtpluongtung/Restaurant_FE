@@ -24,11 +24,14 @@ export class HoaDon {
     setId: number;
     soLuong: number;
     thanhTien: number;
-  
+    name:string;
+    gia :number;
     constructor(data: SetItem) {
       this.setId = data.setId;
       this.soLuong = data.soLuong;
       this.thanhTien = data.thanhTien;
+      this.name =data.name
+      this.gia = data.gia
     }
   }
   
@@ -36,11 +39,14 @@ export class HoaDon {
     monAnId: number;
     soLuong: number;
     thanhTien: number;
-  
+    name:string;
+    gia :number;
     constructor(data: any) {
       this.monAnId = data.monAnId;
       this.soLuong = data.soLuong;
       this.thanhTien = data.thanhTien;
+      this.name =data.name
+      this.gia = data.gia
     }
   }
   

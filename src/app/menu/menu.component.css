@@ -120,6 +120,7 @@ li a:hover {
   position: fixed;
   right: 25px;
   top: 25px;
+  z-index: 99999;
 }
 .food-item-total input {
   width: 50px;
@@ -136,4 +137,49 @@ li a:hover {
 }
 .food-item-total button {
   font-weight: bold;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+}
+.invoice-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: auto;
+}
+.header, .footer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.footer p {
+  font-size: 12px;
+  color: #777;
+}
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.items-table th, .items-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+.items-table th {
+  background-color: #f4f4f4;
+}
+.total {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: right;
+  margin-top: 10px;
+}
+#qrcode {
+  text-align: center;
+  margin: 20px 0;
 }
