@@ -11,3 +11,14 @@ export const TrangThaiBan: AppConstants = {
     DaHuy: 3,
     DaThanhToan: 4
 };
+
+type FoodType = {
+    MON_AN: number;
+    BUFFE: number;
+    DO_UONG: number;
+};
+export const FoodType: FoodType = {
+    MON_AN: 0,
+    BUFFE: 2,
+    DO_UONG: 1,
+};
