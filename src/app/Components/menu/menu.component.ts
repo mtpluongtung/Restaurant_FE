@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Menu } from '../type/Menu';
 import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dialog } from 'primeng/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { OrderService } from '../_service/order.services';
-import { Set } from '../type/set';
 import { ButtonModule } from 'primeng/button';
-import { FoodType } from '../_share/constans';
-import { HoaDon, MonAnItem, SetItem } from '../_model/hoadon';
+import { HoaDon, SetItem, MonAnItem } from '../../_model/hoadon';
+import { OrderService } from '../../_service/order.services';
+import { FoodType } from '../../_share/constans';
+import { Menu } from '../../type/Menu';
+import { Set } from '../../type/set';
 
 
 @Component({
@@ -73,7 +73,7 @@ export class MenuComponent implements OnInit {
     });
   }
   ThemVaoOrder(item: Menu) {
-    
+
     let index = this.hoadon.set.findIndex((x) => x.setId === item.id);
     if (item.type === FoodType.BUFFE && index < 0) {
       let set = new SetItem({
@@ -88,7 +88,7 @@ export class MenuComponent implements OnInit {
     if (item.type === FoodType.MON_AN) {
       let index = this.hoadon.monAn.findIndex((x) => x.monAnId === item.id);
       if (index > -1) {
-        console.log('zzz',item)
+        console.log('zzz', item)
         this.hoadon.monAn[index].soLuong += item.count;
         this.hoadon.monAn[index].thanhTien += item.gia * item.count;
       }
@@ -103,9 +103,9 @@ export class MenuComponent implements OnInit {
         this.hoadon.monAn.push(monAn);
       }
       item.count = 0;
-     
+
     }
-   this.SumHoaDon();
+    this.SumHoaDon();
   }
 
   addFood(item: Menu) {
@@ -134,7 +134,7 @@ export class MenuComponent implements OnInit {
       this.SumHoaDon();
     }
   }
-  SumHoaDon(){
+  SumHoaDon() {
 
     this.totalOrder = this.hoadon.set.length + this.hoadon.monAn.length;
 
@@ -147,19 +147,47 @@ export class MenuComponent implements OnInit {
     this.Thanhtien = totalThanhTienMonAn + totalThanhSet;
     this.SetLocalStorege();
   }
-  SetLocalStorege(){
-      if(this.orderId){
-        localStorage.setItem(this.orderId,JSON.stringify(this.hoadon))
-      }
+  SetLocalStorege() {
+    if (this.orderId) {
+      localStorage.setItem(this.orderId, JSON.stringify(this.hoadon))
+    }
   }
-  GetLocalStorege(){
-    if(this.orderId){
-      let cache =localStorage.getItem(this.orderId)
-      if(cache){
+  GetLocalStorege() {
+    if (this.orderId) {
+      let cache = localStorage.getItem(this.orderId)
+      if (cache) {
         this.hoadon = JSON.parse(cache);
         this.SumHoaDon();
       }
     }
+  }
+
+  CofirmOrder() {
+    if (this.orderId) {
+
+      this.hoadon.maOrder = this.orderId;
+      this.orderService.CofirmOrder(this.hoadon).subscribe((res) => {
+        console.log(res);
+        this.ResetOrder();
+      })
+    }
+
+  }
+  ResetOrder() {
+    this.showHoaDon = false;
+    localStorage.removeItem(this.hoadon.maOrder);
+    this.totalOrder = 0;
+    this.Thanhtien = 0;
+    this.hoadon = {
+      maHoaDon: '',
+      banId: 0,
+      maOrder: '',
+      ngayTao: new Date(),
+      tongTien: 0,
+      thanhToan: false,
+      set: [],
+      monAn: []
+    };
   }
 }
 

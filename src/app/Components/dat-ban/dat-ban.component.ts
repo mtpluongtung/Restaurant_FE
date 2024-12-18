@@ -1,12 +1,14 @@
-import { Ban } from './../_model/ban.model';
+
 import { Component, OnInit } from '@angular/core';
-import { BanService } from '../_service/ban.services';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-import { Order } from '../_model/Order.model';
 import { FormsModule } from '@angular/forms';
-import { OrderService } from '../_service/order.services';
+
 import { Router } from '@angular/router';
+import { Order } from '../../_model/Order.model';
+import { Ban } from '../../_model/ban.model';
+import { BanService } from '../../_service/ban.services';
+import { OrderService } from '../../_service/order.services';
 
 @Component({
   selector: 'app-dat-ban',

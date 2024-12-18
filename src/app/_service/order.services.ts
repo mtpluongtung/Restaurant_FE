@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Order } from '../_model/Order.model';
 import { Menu } from '../type/Menu';
 import { Set } from '../type/set';
+import { HoaDon } from '../_model/hoadon';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,5 +23,8 @@ export class OrderService {
   }
   GetSetInMenu(id: number) {
     return this.http.get<Set>(`${this.apiUrl}Set/${id}`);
+  }
+  CofirmOrder(hoadon: HoaDon) {
+    return this.http.post<any>(`${this.apiUrl}HoaDon`, hoadon);
   }
 }

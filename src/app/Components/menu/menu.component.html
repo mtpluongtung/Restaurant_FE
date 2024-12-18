@@ -103,6 +103,6 @@
     </table>
     <ng-template #footer>
       <h4>Tổng : {{Thanhtien | number}} vnđ</h4>
-      <button label="Quay lại" severity="secondary" class="btn btn btn-warning" >Xác nhận</button>
+      <button label="Quay lại" severity="secondary" class="btn btn btn-warning" (click)="CofirmOrder()">Xác nhận</button>
     </ng-template>
 </p-dialog>
