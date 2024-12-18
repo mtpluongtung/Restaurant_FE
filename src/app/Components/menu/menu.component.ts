@@ -9,6 +9,8 @@ import { OrderService } from '../../_service/order.services';
 import { FoodType } from '../../_share/constans';
 import { Menu } from '../../type/Menu';
 import { Set } from '../../type/set';
+import { SignalRService } from '../../_service/SignalR.service';
+
 
 
 @Component({
@@ -47,7 +49,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private signalRService: SignalRService
   ) { }
 
   open(content: any) {
@@ -59,6 +62,7 @@ export class MenuComponent implements OnInit {
     console.log(this.orderId)
     this.GetMenu();
     this.GetLocalStorege();
+    this.signalRService.startConnection();
   }
   ShowDanhSachMonAn(id: number) {
     this.orderService.GetSetInMenu(id).subscribe((res: Set) => {
@@ -168,6 +172,7 @@ export class MenuComponent implements OnInit {
       this.hoadon.maOrder = this.orderId;
       this.orderService.CofirmOrder(this.hoadon).subscribe((res) => {
         console.log(res);
+        this.signalRService.sendMessage("Có order mới");
         this.ResetOrder();
       })
     }

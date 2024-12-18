@@ -26,10 +26,19 @@
     </div>
 
 
-<p-table [columns]="cols" [value]="DsHopDong" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-  currentPageReportTemplate="Hiển thị {first} - {last} trong số {totalRecords} bản ghi" [loading]="loading"
-  scrollHeight="calc(100vh - 20.5rem)" responsiveLayout="scroll" styleClass="p-datatable-gridlines p-datatable-sm "
-  [(selection)]="selectedItem" dataKey="id">
+<p-table [columns]="cols"
+[value]="DsHopDong"
+[paginator]="true"
+[rows]="25"
+[totalRecords]="totalRecords"
+[loading]="loading"
+(onLazyLoad)="loadDataLazy($event)"
+currentPageReportTemplate="Hiển thị {first} - {last} trong số {totalRecords} bản ghi"
+scrollHeight="calc(100vh - 20.5rem)"
+responsiveLayout="scroll"
+styleClass="p-datatable-gridlines p-datatable-sm"
+[(selection)]="selectedItem"
+dataKey="id">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th class="grid_header_color sticky_header"
@@ -52,6 +61,9 @@
       <td *ngFor="let col of columns" [ngSwitch]="col.field" style="text-align: center;">
         <div  *ngSwitchCase="'ngayTao'">
           <p>{{ rowData['ngayTao'] | date:'dd/MM/yyyy'}}</p>
+        </div>
+        <div  *ngSwitchCase="'tongTien'">
+          <p>{{ rowData['tongTien'] | number}}</p>
         </div>
         <div [ngStyle]="{'height': '5px', 'text-align': rowData[col.align]}" *ngSwitchCase="'stt'">
             <p>{{ index +1}}</p>
