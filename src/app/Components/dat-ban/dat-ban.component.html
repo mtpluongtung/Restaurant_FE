@@ -7,8 +7,11 @@
           <span class="badge" [ngClass]="ban.trangThai? 'bg-warning' : 'bg-success'">
             {{ ban.trangThai  ? 'Đang sử dụng' : 'Sẵn sàng' }}
           </span>
-          <button [ngClass]="ban.trangThai  ? 'btn btn-secondary mt-3' : 'btn btn-success mt-3'" [disabled]="ban.trangThai" (click)="DatBan(ban)">
-            {{ ban.trangThai ? 'Không khả dụng' : 'Đặt bàn'  }}
+          <button *ngIf="!ban.trangThai" class="btn btn-success mt-3"  (click)="DatBan(ban)">
+                {{  'Đặt bàn'  }}
+          </button>
+          <button *ngIf="ban.trangThai" class="btn btn-primary mt-3"  (click)="OrderThemMon(ban.id)">
+            {{  'Order thêm'  }}
           </button>
         </div>
       </div>
@@ -29,7 +32,7 @@
     </div>
     <div class="mb-3">
       <label for="phone" class="form-label">Số người</label>
-      <input type="text" class="form-control" id="SoluongKH" name="SoluongKH" [(ngModel)]="OrderModle.SoluongKH">
+      <input type="number" class="form-control" min="1" id="SoluongKH" name="SoluongKH" [(ngModel)]="OrderModle.SoluongKH">
     </div>
     <div class="mb-3 form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1" name="exampleCheck1" [(ngModel)]="OrderModle.CustomerExample" (ngModelChange)="AutoFilCustomer()">

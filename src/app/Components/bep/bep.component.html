@@ -1,0 +1,84 @@
+
+
+<div class="row d-flex align-items-center justify-content-between" >
+    <h3>Danh sách các món ăn đang yêu cầu</h3>
+</div>
+<p-toast position="top-right" />
+<div class="wrapper wrapper-content white-bg animated fadeIn mt-4">
+<p-table [columns]="cols"
+[value]="DsMonAn"
+showGridlines
+[paginator]="true"
+[rows]="25"
+[totalRecords]="totalRecords"
+[loading]="loading"
+(onLazyLoad)="loadDataLazy($event)"
+currentPageReportTemplate="Hiển thị {first} - {last} trong số {totalRecords} bản ghi"
+scrollHeight="calc(100vh - 20.5rem)"
+responsiveLayout="scroll"
+styleClass="p-datatable-gridlines p-datatable-sm"
+[(selection)]="selectedItem"
+dataKey="id"
+[scrollable]="true">
+<ng-template pTemplate="header" let-columns>
+  <tr>
+    <th class="grid_header_color sticky_header"
+      [ngStyle]="{'width': '10px', 'text-align': 'center', 'min-height':'50px'}">
+      <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+    </th>
+    <th class="grid_header_color sticky_header" *ngFor="let col of columns"
+      [ngStyle]="{'width': col.width, 'text-align': 'center', 'min-height':'50px'}">
+      {{col.title}}
+    </th>
+    <th class="grid_header_color sticky_header"> Tác vụ</th>
+  </tr>
+</ng-template>
+<ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+  <tr>
+    <td [ngStyle]="{'height': '5px','width': '10px', 'text-align': 'center'}">
+      <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+    </td>
+    
+    <td *ngFor="let col of columns" [ngSwitch]="col.field" style="text-align: center;">
+      <div  *ngSwitchCase="'createdDate'">
+        <p>{{ rowData['createdDate'] | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+      </div>
+      <div  *ngSwitchCase="'countdown'">
+        <p>{{ countdownTimers[index] }}</p>
+      </div>
+      <div  *ngSwitchCase="'trangThai'" >
+        <p  [ngClass]="{'text-danger': rowData['trangThai'] == 0, 'text-warning': rowData['trangThai'] == 1, 'text-success': rowData['trangThai'] == 2}">{{ rowData['trangThai'] == 0 ? 'Đang chờ' : rowData['trangThai'] == 1 ? 'Đang thực hiện':'Đã hoàn thành' }}</p>
+      </div>
+      <div [ngStyle]="{'height': '5px', 'text-align': rowData[col.align]}" *ngSwitchCase="'stt'">
+          <p>{{ index +1}}</p>
+      </div>
+      <p *ngSwitchDefault> {{ rowData[col.field] }}</p>
+    </td>
+    
+    <td style="text-align: center;">
+      <p-button (click)="SelectRow(rowData,$event)" icon="pi pi-ellipsis-v"/>
+        <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+    </td>
+  </tr>
+</ng-template>
+</p-table>
+
+
+
+<p-dialog header="Cập nhật trạng thái" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <form>
+    <div class="mb-3">
+      <label for="FoodName" class="form-label">Tên Món ăn</label>
+      <input type="text"  [(ngModel)]="currentIteselected.name" name="FoodName" class="form-control" id="FoodName" aria-describedby="emailHelp" disabled>
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Số lượng</label>
+      <input type="number" min="1" class="form-control"   [(ngModel)]="currentIteselected.soLuong" id="phone" name="phone" >
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Trạng thái</label>
+      <p-select [options]="TrangThaiBep" class="form-control" name="status" [(ngModel)]="currentIteselected.trangThai" optionLabel="name" optionValue="value" placeholder="Chọn trạng thái" appendTo="body"/>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="UpdateBep()">Cập nhật</button>
+  </form>
+</p-dialog>

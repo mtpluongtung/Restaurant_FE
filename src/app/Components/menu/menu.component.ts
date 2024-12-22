@@ -10,20 +10,24 @@ import { FoodType } from '../../_share/constans';
 import { Menu } from '../../type/Menu';
 import { Set } from '../../type/set';
 import { SignalRService } from '../../_service/SignalR.service';
-
-
+import { Toast } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
   standalone: true,
-  imports: [CommonModule, Dialog, ButtonModule]
+  imports: [CommonModule, Dialog, ButtonModule,Toast,OverlayBadgeModule],
+  providers:[MessageService]
 })
 export class MenuComponent implements OnInit {
   visible: boolean = false;
   showHoaDon: boolean = false;
   orderId: string | null = '';
+  banId :number = 0;
+  slKhachHang :number = 0;
   menulist: Menu[] = [];
   setInMenu: Set = {
     id: 0,
@@ -45,12 +49,14 @@ export class MenuComponent implements OnInit {
   };
   totalOrder: number = 0;
   Thanhtien: number = 0;
-  selectedOrder: any[] = []
+  selectedOrder: any[] = [];
+  sections: any = [];
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private signalRService: SignalRService
+    private signalRService: SignalRService,
+    private messageService: MessageService
   ) { }
 
   open(content: any) {
@@ -58,11 +64,18 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orderId = this.route.snapshot.paramMap.get('id');
+    this.orderId = this.route.snapshot.paramMap.get('maOrder');
+    this.banId = Number(this.route.snapshot.paramMap.get('banId'));
+    this.slKhachHang = Number(this.route.snapshot.paramMap.get('slkh'));
+    console.log(this.banId)
     console.log(this.orderId)
     this.GetMenu();
     this.GetLocalStorege();
     this.signalRService.startConnection();
+  }
+  ngAfterViewInit() {
+    // Lấy tất cả các phần (sections) sau khi view đã được render
+    this.sections = document.querySelectorAll('.section');
   }
   ShowDanhSachMonAn(id: number) {
     this.orderService.GetSetInMenu(id).subscribe((res: Set) => {
@@ -82,8 +95,8 @@ export class MenuComponent implements OnInit {
     if (item.type === FoodType.BUFFE && index < 0) {
       let set = new SetItem({
         setId: item.id,
-        soLuong: 1,
-        thanhTien: item.gia,
+        soLuong: this.slKhachHang,
+        thanhTien: item.gia * this.slKhachHang,
         name: item.name,
         gia: item.gia
       });
@@ -170,10 +183,14 @@ export class MenuComponent implements OnInit {
     if (this.orderId) {
 
       this.hoadon.maOrder = this.orderId;
+      this.hoadon.banId = this.banId;
+      this.hoadon.tongTien = this.Thanhtien;
       this.orderService.CofirmOrder(this.hoadon).subscribe((res) => {
-        console.log(res);
+        this.messageService.add({severity:'success', summary:'Thành công', detail:'Đặt món thành công'});
         this.signalRService.sendMessage("Có order mới");
         this.ResetOrder();
+      },err=>{
+        this.messageService.add({severity:'error', summary:'Thất bại', detail:'Đặt món thất bại'});
       })
     }
 
@@ -193,6 +210,50 @@ export class MenuComponent implements OnInit {
       set: [],
       monAn: []
     };
+  }
+
+  onScroll(event:any) {
+    const container = event.target as HTMLElement;
+    const sections = container.querySelectorAll('.section');
+    const scrollTop = container.scrollTop;
+
+    sections.forEach((section: Element) => {
+      const rect = section.getBoundingClientRect();
+      const id = section.getAttribute('id');
+
+      // Kiểm tra nếu phần tử nằm trong vùng nhìn thấy của `menu-item`
+      if (rect.top >= 0 && rect.top <= container.clientHeight / 2) {
+        // Active tab tương ứng
+        const activeLink = document.querySelector(
+          `.menu-group a[href="#${id}"]`
+        );
+        document
+          .querySelectorAll('.menu-group a')
+          .forEach((link) => link.classList.remove('active'));
+        activeLink?.classList.add('active');
+      }
+    });
+  }
+
+  scrollToSection(id: string,event: Event) {
+    event.preventDefault(); // Ngăn hành vi mặc định
+    const section = document.getElementById(id);
+   
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  getIdForType(type: number): string {
+    switch (type) {
+      case 2:
+        return 'buffe-combo';
+      case 0:
+        return 'do-an';
+      case 1:
+        return 'do-uong';
+      default:
+        return '';
+    }
   }
 }
 

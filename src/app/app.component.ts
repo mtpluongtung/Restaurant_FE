@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import {  RouterOutlet } from '@angular/router';
 import { AdminComponent } from "./Components/admin/admin.component";
 import { Observable } from 'rxjs';
@@ -18,9 +18,12 @@ export class AppComponent {
     observer.next(true);
     observer.complete();
   });
+
+  navbarHeight: number = 0;
   constructor(){
     
   }
   isLogin:boolean =false
   title = 'Restaurant_FE';
+
 }

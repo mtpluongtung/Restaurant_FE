@@ -1,0 +1,62 @@
+<!-- order-receipt.component.html -->
+<div class="order-receipt" >
+
+  <table class="order-info" [cellPadding]="2">
+    <tr>
+      <th>Mã Order:</th>
+      <td>{{order.maOrder}}</td>
+    </tr>
+    <tr>
+      <th>Bàn: </th>
+      <td> {{order.orderDetails.banName}}</td>
+    </tr>
+    <tr>
+      <th>Ngày Tạo: </th>
+      <td> {{order.ngayTao | date :'dd/MM/yyyy HH:mm:ss'}}</td>
+    </tr>
+    <tr>
+      <th>Khách Hàng: </th>
+      <td> {{order.orderDetails.tenKhachHang}}</td>
+    </tr>
+    <tr>
+      <th>Điện Thoại: </th>
+      <td> {{order.orderDetails.phone}}</td>
+    </tr>
+  </table>
+
+  <div class="order-items">
+    <table>
+      <tr>
+        <th>Tên Món</th>
+        <th>Số Lượng</th>
+        <th>Giá</th>
+        <th>Thành Tiền</th>
+      </tr>
+      <tr *ngFor="let item of order.monAn">
+        <td>{{item.name}}</td>
+        <td>{{item.soLuong}}</td>
+        <td>{{item.gia | number}}</td>
+        <td>{{item.thanhTien | number}}</td>
+      </tr>
+      <tr *ngFor="let item of order.setMonAn">
+        <td>{{item.name}}</td>
+        <td>{{item.soLuong}}</td>
+        <td>{{item.gia | number}}/người</td>
+        <td>{{item.thanhTien | number}}</td>
+      </tr>
+      <!-- Dòng tổng tiền -->
+      <tr style="text-align: center; font-weight: bold;">
+        <td colspan="2">Tổng Tiền:</td>
+        <td colspan="2">{{order.tongTien | number}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="order-total">
+    <!-- Tạo một dòng thông báo thêm cho khách hàng -->
+    <strong>Quý khách có thể quét mã để order thêm</strong>
+  </div>
+
+  <!-- Mã QR code -->
+  <qrcode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+</div>

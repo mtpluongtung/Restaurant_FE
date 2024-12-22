@@ -1,0 +1,59 @@
+/* order-receipt.component.css */
+.order-receipt {
+    background-color: #fff;
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .order-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .order-info {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .order-info div {
+    margin-bottom: 5px;
+  }
+  
+  .order-items {
+    text-align: left;
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+  
+  .order-items table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+  
+  .order-items th, .order-items td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .order-total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .qr-code {
+    margin-top: 20px;
+  }
+  .order-info td {
+    margin-left: 25px;
+  }
+  

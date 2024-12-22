@@ -1,0 +1,80 @@
+<!-- order-receipt.component.html -->
+<div class="order-receipt">
+
+  <!-- Thông tin nhà hàng -->
+  <div class="restaurant-info">
+    <h1>Nhà Hàng ABC</h1>
+    <p>Địa chỉ: 123 Đường Ngon, Thành phố Ẩm Thực</p>
+    <p>Điện thoại: 0123-456-789</p>
+    <hr>
+  </div>
+
+  <!-- Thông tin hóa đơn -->
+  <div class="order-info">
+    <h2>Hóa Đơn Thanh Toán</h2>
+    <table  [cellPadding]="2">
+      <tr>
+        <th>Mã hóa đơn :</th>
+        <td style="padding-left: 25px;">{{ order.id }}</td>
+      </tr>
+      <tr>
+        <th>Bàn :</th>
+        <td style="padding-left: 25px;">{{ order.orderDetails.banName }}</td>
+      </tr>
+      <tr>
+        <th>Ngày Tạo :</th>
+        <td style="padding-left: 25px;">{{ order.ngayTao | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+      </tr>
+      <tr>
+        <th>Khách Hàng :</th>
+        <td style="padding-left: 25px;">{{ order.orderDetails.tenKhachHang }}</td>
+      </tr>
+      <tr>
+        <th>Điện Thoại :</th>
+        <td style="padding-left: 25px;">{{ order.orderDetails.phone }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Danh sách món ăn -->
+  <div class="order-items">
+    <table>
+      <thead>
+        <tr>
+          <th>Tên Món</th>
+          <th>Số Lượng</th>
+          <th>Giá</th>
+          <th>Thành Tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.monAn">
+          <td>{{ item.name }}</td>
+          <td>{{ item.soLuong }}</td>
+          <td>{{ item.gia | number }}</td>
+          <td>{{ item.thanhTien | number }}</td>
+        </tr>
+        <tr *ngFor="let item of order.setMonAn">
+          <td>{{ item.name }}</td>
+          <td>{{ item.soLuong }}</td>
+          <td>{{ item.gia | number }}</td>
+          <td>{{ item.thanhTien | number }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr style="font-weight: bold;">
+          <td colspan="2" style="text-align: right;">Tổng Tiền:</td>
+          <td colspan="2">{{ order.tongTien | number }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Mã QR và thông tin thanh toán -->
+  <div class="order-total">
+    <strong>Quý khách có thể quét mã để thanh toán:</strong>
+    <div class="qrcode">
+      <qrcode [qrdata]="qrData" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+  </div>
+</div>

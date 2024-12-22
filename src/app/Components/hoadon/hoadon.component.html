@@ -1,81 +1,101 @@
-<div class="wrapper wrapper-content white-bg animated fadeIn mt-4">
-    <div class="row mb-2 d-flex">
-      <div class="col-2">
-        <span>Tên khách hàng</span>
-        <input class="form-control" />
-      </div>
-      <div class="col-2">
-        <span>Số điện thoại</span>
-        <input  class="form-control" />
-      </div>
+<p-toast />
+<p-confirmdialog />
 
-      <div class="col-4">
-        <span>Ngày tạo</span>
-        <div class="row">
-          <div class="col-12 d-flex align-items-center">
-            <p-calendar appendTo="body"  [showTime]="true" [showSeconds]="true" [showIcon]="true" dateFormat="dd/mm/yy" [showButtonBar]="true"></p-calendar>
-            <span style="padding:5px">Đến </span>
-            <p-calendar appendTo="body"  [showTime]="true" [showSeconds]="true" [showIcon]="true" dateFormat="dd/mm/yy" [showButtonBar]="true"></p-calendar>
-          </div>
+<div class="wrapper p-2 wrapper-content white-bg animated fadeIn mt-4">
+  <div class="row mb-2 d-flex">
+    <div class="col-2">
+      <span>Tìm kiếm</span>
+      <input class="form-control" [(ngModel)]="search.text" name="text" />
+    </div>
+
+    <div class="col-4">
+      <span>Ngày tạo</span>
+      <div class="row">
+        <div class="col-12 d-flex align-items-center">
+          <p-datepicker [(ngModel)]="search.fromDate" />
+          <span style="padding:5px">Đến </span>
+          <p-datepicker [(ngModel)]="search.toDate" />
         </div>
-      </div>
-  
-      <div class="col-2 d-flex justify-content-between mt-4">
-        <p-button styleClass="p-button-raised  p-button-success p-button-xs" >Tìm kiếm</p-button>
       </div>
     </div>
 
+    <div class="col-2 d-flex justify-content-between mt-4">
+      <p-button styleClass="p-button-raised  p-button-success p-button-xs" (click)="LoadData()">Tìm kiếm</p-button>
+    </div>
+  </div>
 
-<p-table [columns]="cols"
-[value]="DsHopDong"
-[paginator]="true"
-[rows]="25"
-[totalRecords]="totalRecords"
-[loading]="loading"
-(onLazyLoad)="loadDataLazy($event)"
-currentPageReportTemplate="Hiển thị {first} - {last} trong số {totalRecords} bản ghi"
-scrollHeight="calc(100vh - 20.5rem)"
-responsiveLayout="scroll"
-styleClass="p-datatable-gridlines p-datatable-sm"
-[(selection)]="selectedItem"
-dataKey="id">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th class="grid_header_color sticky_header"
-        [ngStyle]="{'width': '10px', 'text-align': 'center', 'min-height':'50px'}">
-        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-      </th>
-      <th class="grid_header_color sticky_header" *ngFor="let col of columns"
-        [ngStyle]="{'width': col.width, 'text-align': 'center', 'min-height':'50px'}">
-        {{col.title}}
-      </th>
-      <th class="grid_header_color sticky_header"> Tác vụ</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-    <tr>
-      <td [ngStyle]="{'height': '5px','width': '10px', 'text-align': 'center'}">
-        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-      </td>
-      
-      <td *ngFor="let col of columns" [ngSwitch]="col.field" style="text-align: center;">
-        <div  *ngSwitchCase="'ngayTao'">
-          <p>{{ rowData['ngayTao'] | date:'dd/MM/yyyy'}}</p>
-        </div>
-        <div  *ngSwitchCase="'tongTien'">
-          <p>{{ rowData['tongTien'] | number}}</p>
-        </div>
-        <div [ngStyle]="{'height': '5px', 'text-align': rowData[col.align]}" *ngSwitchCase="'stt'">
+
+  <p-table [columns]="cols" [value]="DsHoaDon" [paginator]="true" [rows]="25" [totalRecords]="totalRecords"
+    [loading]="loading" (onLazyLoad)="loadDataLazy($event)"
+    currentPageReportTemplate="Hiển thị {first} - {last} trong số {totalRecords} bản ghi"
+    scrollHeight="calc(100vh - 20.5rem)" responsiveLayout="scroll" styleClass="p-datatable-gridlines p-datatable-sm"
+    [(selection)]="selectedItem" dataKey="id" [scrollable]="true" showGridlines>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="grid_header_color sticky_header"
+          [ngStyle]="{'width': '10px', 'text-align': 'center', 'min-height':'50px'}">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th class="grid_header_color sticky_header" *ngFor="let col of columns"
+          [ngStyle]="{'width': col.width, 'text-align': 'center', 'min-height':'50px'}">
+          {{col.title}}
+        </th>
+        <th class="grid_header_color sticky_header"> Tác vụ</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+      <tr>
+        <td [ngStyle]="{'height': '5px','width': '10px', 'text-align': 'center'}">
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+
+        <td *ngFor="let col of columns" [ngSwitch]="col.field" style="text-align: center;">
+          <div *ngSwitchCase="'ngayTao'">
+            <p>{{ rowData['ngayTao'] | date:'dd/MM/yyyy hh:mm:ss'}}</p>
+          </div>
+          <div *ngSwitchCase="'tongTien'">
+            <p>{{ rowData['tongTien'] | number}}</p>
+          </div>
+          <div *ngSwitchCase="'stt'">
             <p>{{ index +1}}</p>
-        </div>
-        <p *ngSwitchDefault> {{ rowData[col.field] }}</p>
-      </td>
-      <td>
-        <!-- <div class="card flex justify-content-center">
-          <p-menu #menu [model]="items" [popup]="true"></p-menu>
-          <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-bars" label="Show"></button>
-        </div> -->
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+          </div>
+          <div *ngSwitchCase="'thanhToan'">
+            <p-tag
+            [severity]="rowData['thanhToan']  ? 'success' : 'danger'"
+            [value]="rowData['thanhToan']  ? 'Đã thanh toán' : 'Chưa thanh toán'"
+            [rounded]="true">
+          </p-tag>
+          </div>
+          <p *ngSwitchDefault> {{ rowData[col.field] }}</p>
+        </td>
+        <td>
+          <p-button (click)="SelectRow(rowData,$event)" icon="pi pi-ellipsis-v" />
+          <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+
+  <p-dialog header="Phiếu order" [modal]="true" [(visible)]="visible">
+    <div id="print-section">
+      <app-Order-details *ngIf="visible" [order]="orderDetail"></app-Order-details>
+    </div>
+    <ng-template pTemplate="footer">
+      <div style="text-align: center; display: block;">
+        <button [useExistingCss]="true" printSectionId="print-section" ngxPrint class="btn btn-primary">print</button>
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog header="Hóa đơn" [modal]="true" [(visible)]="isShowHoaDon">
+    <div id="print-check">
+      <app-hoa-don-details *ngIf="isShowHoaDon" [order]="orderDetail"></app-hoa-don-details>
+    </div>
+    <ng-template pTemplate="footer">
+      <div style="text-align: center; display: block;">
+        <button [useExistingCss]="true" printSectionId="print-check" ngxPrint class="btn btn-primary">print</button>
+      </div>
+    </ng-template>
+  </p-dialog>

@@ -27,4 +27,8 @@ export class OrderService {
   CofirmOrder(hoadon: HoaDon) {
     return this.http.post<any>(`${this.apiUrl}HoaDon`, hoadon);
   }
+  GetMaOrder(ban: number) 
+  {
+    return this.http.get<any>(`${this.apiUrl}Order/${ban}`);
+  }
 }

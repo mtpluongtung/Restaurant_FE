@@ -1,11 +1,13 @@
-<app-admin *ngIf="(isLoggedIn$ | async)" style="position: fixed; width: 100%; z-index: 9999;">
+
+
+<app-admin *ngIf="(isLoggedIn$ | async)" style="position: fixed; width: 100%; z-index: 9999;" #navbar>
 </app-admin>
 <!-- <div>
     <router-outlet [ngStyle]="(isLoggedIn$ | async) ? { 'margin-top': '70px', 'color': 'white' } : {}"></router-outlet>
 </div> -->
 <div [ngClass]="{shownav: isLoggedIn$ | async}" [ngClass]="(isLoggedIn$ | async) ? 'body-wrapper' : ''">
-    <div [ngStyle]="(isLoggedIn$ | async) ? { 'padding-left': '15px', 'padding-top': '5%' ,'padding-right':'15px' } : {}" >
-      <router-outlet  [ngStyle]="(isLoggedIn$ | async) ? { 'z-index': '1','padding-right':'15px' } : {}">
+    <div [ngClass]="(isLoggedIn$ | async) ? 'logged-in-container' : ''">
+      <router-outlet  [ngClass]="(isLoggedIn$ | async) ? 'logged-in-router' : ''">
       </router-outlet>
     </div>
   </div>

@@ -1,16 +1,19 @@
+<p-toast position="top-right" />
+
 <div class="cart-order">
-  <p-button  badge="{{totalOrder}}" (click)="showHoaDonDialog()">Danh sách order</p-button>
+  <p-button  badge="{{totalOrder}}" (click)="showHoaDonDialog()" [rounded]="true"  severity="info"></p-button>
 </div>
+
 <div class="menu-order">
   <div class="menu-tab">
     <ul class="menu-group">
-      <li><a href="">Bufe - Combo</a></li>
-      <li><a href="">Đồ ăn</a></li>
-      <li><a href="">Đồ uống</a></li>
+      <li><a href="#buffe-combo" id="link-buffe" (click)="scrollToSection('buffe-combo',$event)">Bufe - Combo</a></li>
+      <li><a href="#do-an" id="link-food"  (click)="scrollToSection('do-an',$event)">Đồ ăn</a></li>
+      <li><a href="#do-uong" id="link-drink" (click)="scrollToSection('do-uong',$event)">Đồ uống</a></li>
     </ul>
   </div>
-  <div class="memu-item">
-    <div class="food-item border p-2" *ngFor="let item of menulist">
+  <div class="memu-item" (scroll)="onScroll($event)">
+    <div class="food-item border p-2 section" *ngFor="let item of menulist"  [id]="getIdForType(item.type)" >
       <img src="{{item.url}}" class="w-lg-225px rounded w-50">
       <div class="food-item-card card card-hover-border">
         <div class="food-item-details">
