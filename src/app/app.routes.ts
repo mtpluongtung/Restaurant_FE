@@ -6,6 +6,7 @@ import { AdminComponent } from './Components/admin/admin.component';
 import { HoadonComponent } from './Components/hoadon/hoadon.component';
 import { BepComponent } from './Components/bep/bep.component';
 import { DoanhThuComponent } from './Components/doanh-thu/doanh-thu.component';
+import { KhachHangComponent } from './Components/khach-hang/khach-hang.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,5 +17,6 @@ export const routes: Routes = [
     { path: 'admin', component: AdminComponent },
     { path: 'hoa-don', component: HoadonComponent },
     { path: 'bep', component: BepComponent },
-    { path: 'doanh-thu', component: DoanhThuComponent }
+    { path: 'doanh-thu', component: DoanhThuComponent },
+    { path: 'khach-hang', component: KhachHangComponent }
 ];

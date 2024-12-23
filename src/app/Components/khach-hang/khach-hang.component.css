@@ -1,0 +1,252 @@
+.menu-order {
+    display: flex;
+    /* Kích hoạt Flexbox */
+    justify-content: space-between;
+    /* Căn đều khoảng cách giữa các phần tử */
+    gap: 2px;
+    /* Khoảng cách giữa các phần tử */
+    min-height: 100%;
+  }
+  
+  .menu-tab {
+    width: 20vw;
+    background-color: #2b2b40;
+  }
+  
+  .memu-item {
+    width: 80vw;
+    overflow-y: scroll;
+    background-color: #2b2b40;
+    height: 90vh;
+  }
+  
+  .food-item {
+    display: flex;
+    justify-content: space-between;
+    /* Căn đều khoảng cách giữa các phần tử */
+    align-items: center;
+    /* Căn giữa các phần tử theo chiều dọc */
+    gap: 10px;
+    /* Khoảng cách giữa các phần tử */
+    background-color: #2b2b40;
+    width: 100%;
+    height: 32vh;
+  }
+  
+  .food-item img {
+    height: 100%;
+    width: 40%;
+  }
+  
+  .food-item-card {
+    height: 100%;
+    width: 60%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    /* Căn đều khoảng cách giữa các phần tử */
+    flex-direction: column;
+    background-color: transparent;
+  }
+  
+  ::ng-deep .p-dialog-footer {
+    padding: 15px !important;
+    display: flex;
+    justify-content: space-between !important;
+  }
+  
+  .food-item-action button {
+    color: white !important;
+    outline: seashell !important;
+    border: solid 1px seashell !important;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  li a {
+    display: block;
+    color: #ffff;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    border: solid 1px #ffff;
+  }
+  
+  /* Change the link color on hover */
+  li a:hover {
+    background-color: #db102b;
+    color: white;
+  }
+  .food-item-action{
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-items: flex-start;
+  }
+  .cart-out-line{
+    position: fixed;
+    right: 25px;
+    top: 25px;
+    height: 50px;
+    width: 50px;
+    animation:  example 4s infinite;;
+    border-radius: 50%;
+    background-color: #6e61e0;
+  }
+  @keyframes example {
+   0% {
+      -webkit-transform: scale(0.1, 0.1);
+      opacity: 0.0;
+  }
+  50% {
+      opacity: 1.0;
+  }
+  100% {
+      -webkit-transform: scale(1.2, 1.2);
+      opacity: 0.0;
+  }
+  
+  }
+  .cart-order {
+    position: fixed;
+    right: 25px;
+    top: 7%;
+    height: 70px;
+    width: 70;
+    z-index: 9999;
+    border-radius: 50% !important;
+  }
+  .food-item-total input {
+    width: 35px;
+    color: white;
+    border: solid 1px #ffff;
+    text-align: center;
+    border-radius: 5px;
+    text-overflow: inherit;
+    height: 35px;
+    border: solid 1px #2e2929;
+    margin-right: 15px;
+  }
+  .food-item-total {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .food-item-total button {
+    font-weight: bold;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+  }
+  .invoice-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: auto;
+  }
+  .header, .footer {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .footer p {
+    font-size: 12px;
+    color: #777;
+  }
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .items-table th, .items-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  .items-table th {
+    background-color: #f4f4f4;
+  }
+  .total {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: right;
+    margin-top: 10px;
+  }
+  #qrcode {
+    text-align: center;
+    margin: 20px 0;
+  }
+  ::ng-deep.p-toast {
+    z-index: 9999 !important; /* Đảm bảo toast luôn hiển thị trên cùng */
+  }
+  ::ng-deep.shadow-buton {
+    border-radius: 50% !important;
+  }
+  .cart-order button 
+  {
+    border: none;
+    outline: none;
+  }
+  .menu-group li a.active {
+    background-color: #d30e49;
+    color: white;
+  }
+  #landscape-warning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Nền tối */
+    color: white;
+    font-size: 18px;
+    z-index: 9999; /* Luôn trên cùng */
+    text-align: center;
+  }
+  @media (max-width: 2560px) {
+    .memu-item {
+      height: 93vh;
+    }
+    @media (max-width: 2560px) {
+      .memu-item {
+        height: 94vh;
+      }
+    }
+  }
+  @media (max-width: 1180px) {
+    .food-item {
+      height: 40vh;
+    }
+    .menu-group li a {
+        font-size: 15px;
+    }
+    ::ng-deep.p-dialog .p-dialog-header{
+        padding: 30px;
+    }
+  @media (max-width: 844px) {
+    .food-item {
+      height: 90vh;
+    }
+    .menu-group li a {
+        font-size: 15px;
+    }
+    ::ng-deep.p-dialog .p-dialog-header{
+        padding: 30px;
+    }
+   
+  }
+
+}
