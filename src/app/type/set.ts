@@ -11,4 +11,5 @@ export interface MonAn {
     name: string;
     url: string;
     gia:number;
+    soLuong:number;
 }

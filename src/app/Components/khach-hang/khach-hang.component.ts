@@ -8,7 +8,7 @@ import { HoaDon, SetItem, MonAnItem } from '../../_model/hoadon';
 import { OrderService } from '../../_service/order.services';
 import { FoodType } from '../../_share/constans';
 import { Menu } from '../../type/Menu';
-import { Set } from '../../type/set';
+import { MonAn, Set } from '../../type/set';
 import { SignalRService } from '../../_service/SignalR.service';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -181,7 +181,30 @@ export class KhachHangComponent implements OnInit {
     }
     this.SumHoaDon();
   }
-
+  GoiMon(){
+      let data = this.setInMenu.monAn.filter((mon: any) => mon.soLuong > 0);
+      let monAnRequest = [];
+      for (let item of data) 
+        {
+          let monAn = {
+            IdMonAn : item.id,
+            SoLuong : item.soLuong
+          }
+          monAnRequest.push(monAn);
+        }
+      var request = {
+        MaOrder : this.orderId,
+        MonAn : monAnRequest,
+        SetId : this.setInMenu.id,
+      }
+      this.orderService.GoiMon(request).subscribe((res : any) => {
+        this.messageService.add({severity:'success', summary:'Thành công', detail:'Gọi món thành công'});
+        this.signalRService.sendMessage("Có order mới");
+        this.visible = false;
+      }, err=>{
+        this.messageService.add({severity:'error', summary:'Thất bại', detail:err.error.Message});
+      });
+  }
   SumHoaDon() {
 
     this.totalOrder = this.hoadon.set.length + this.hoadon.monAn.length;
@@ -209,17 +232,13 @@ export class KhachHangComponent implements OnInit {
       }
     }
   }
-  addFoodCache(item: MonAnItem) {
+  addFoodCache(item: MonAn) {
     item.soLuong++;
-    item.thanhTien = item.gia * item.soLuong;
-    this.SumHoaDon();
   }
 
-  RemoveFoodCache(item: MonAnItem) {
+  RemoveFoodCache(item: MonAn) {
     if (item.soLuong > 0) {
       item.soLuong--;
-      item.thanhTien = item.gia * item.soLuong;
-      this.SumHoaDon();
     }
   }
   CofirmOrder() {

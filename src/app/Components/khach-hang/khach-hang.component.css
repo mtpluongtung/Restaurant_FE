@@ -225,16 +225,33 @@
         height: 94vh;
       }
     }
+    @media (max-width: 1024px) {
+      .memu-item {
+        height: 94vh;
+      }
+    }
   }
   @media (max-width: 1180px) {
     .food-item {
-      height: 40vh;
+      height: 45vh;
     }
     .menu-group li a {
         font-size: 15px;
     }
     ::ng-deep.p-dialog .p-dialog-header{
         padding: 30px;
+    }
+    @media (max-width: 896px) {
+      .food-item {
+        height: 90vh;
+      }
+      .menu-group li a {
+          font-size: 15px;
+      }
+      ::ng-deep.p-dialog .p-dialog-header{
+          padding: 30px;
+      }
+     
     }
   @media (max-width: 844px) {
     .food-item {

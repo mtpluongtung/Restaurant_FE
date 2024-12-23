@@ -16,7 +16,7 @@ export class OrderDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.qrData = location.origin + '/menu/' + this.order.maOrder;
+    this.qrData = location.origin + '/khach-hang/' + this.order.maOrder;
   }
 
 }

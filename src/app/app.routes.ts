@@ -18,5 +18,5 @@ export const routes: Routes = [
     { path: 'hoa-don', component: HoadonComponent },
     { path: 'bep', component: BepComponent },
     { path: 'doanh-thu', component: DoanhThuComponent },
-    { path: 'khach-hang', component: KhachHangComponent }
+    { path: 'khach-hang/:maOrder', component: KhachHangComponent }
 ];

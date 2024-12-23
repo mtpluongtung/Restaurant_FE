@@ -31,4 +31,7 @@ export class OrderService {
   {
     return this.http.get<any>(`${this.apiUrl}Order/${ban}`);
   }
+  GoiMon(data: any) {
+    return this.http.post<any>(`${this.apiUrl}Order/goi-mon`, data);
+  }
 }

@@ -55,20 +55,20 @@
     </div>
   </ng-template>
   <div class="row">
-    <div class="card col-md-6 p-2" *ngFor="let monAn of setInMenu.monAn">
+    <div class="card col-md-4 p-2" *ngFor="let monAn of setInMenu.monAn">
       <img src="{{monAn.url}}" class="w-lg-225px rounded w-100">
       <h5>{{monAn.name}}</h5>
       <div class="food-item-total">
-        <p-button  [style]="{'height':'35px', 'width' :'35px', 'font-weight' :'bold'}" label="-" [raised]="true" severity="secondary" />
-        <input type="number" value="1" style="margin-left: 15px;" >
-        <p-button [style]="{'height':'35px', 'width' :'35px','font-weight' :'bold'}" label="+" [raised]="true" severity="danger" />
+        <p-button  [style]="{'height':'35px', 'width' :'35px', 'font-weight' :'bold'}" label="-" [raised]="true" severity="secondary" (click)="RemoveFoodCache(monAn)"/>
+        <input type="number" value="{{monAn.soLuong}}" style="margin-left: 15px; color: black;" disabled>
+        <p-button [style]="{'height':'35px', 'width' :'35px','font-weight' :'bold'}" label="+" [raised]="true" severity="danger" (click)="addFoodCache(monAn)" />
       </div>
     </div>
   </div>
   <ng-template #footer>
     <h4>{{setInMenu.gia | currency: 'VND' }} / người</h4>
     <div>
-      <button label="Quay lại" severity="secondary" class="btn btn btn-danger" (click)="visible = false">Gọi
+      <button label="Quay lại" severity="secondary" class="btn btn btn-danger" (click)="GoiMon()">Gọi
         món</button>
       <button label="Quay lại" severity="secondary" class="btn btn btn-warning" style="margin-left: 15px;" (click)="visible = false">Quay
         lại</button>
@@ -76,44 +76,3 @@
   </ng-template>
 </p-dialog>
 
-<!-- nhưng món ăn trong hóa đơn -->
-
-<p-dialog header="Danh sách món ăn đã chọn" [modal]="true" [(visible)]="showHoaDon">
-  <table class="items-table">
-    <thead>
-      <tr>
-        <th>Tên món</th>
-        <th>Số lượng</th>
-        <th>Giá</th>
-        <th>Thành tiền</th>
-        <th>Acction</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let set of hoadon.set">
-      <tr>
-        <td>{{set.name}}</td>
-        <td>{{set.soLuong}}</td>
-        <td>{{set.gia | number}}/ người</td>
-        <td>{{set.thanhTien | number}}vnđ</td>
-        <td></td>
-      </tr>
-    </tbody>
-    <tbody *ngFor="let monAn of hoadon.monAn">
-      <tr>
-        <td>{{monAn.name}}</td>
-        <td>{{monAn.soLuong}}</td>
-        <td>{{monAn.gia | number}} vnđ</td>
-        <td>{{monAn.thanhTien | number}} vnđ</td>
-        <td>
-          <button class="btn btn-outline-primary" (click)="addFoodCache(monAn)">+</button>
-          <button class="btn btn-outline-danger" style="margin-left: 15px;" (click)="RemoveFoodCache(monAn)">-</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <ng-template #footer>
-    <h4>Tổng : {{Thanhtien | number}} vnđ</h4>
-    <button label="Quay lại" severity="secondary" class="btn btn btn-warning" (click)="CofirmOrder()">Xác
-      nhận</button>
-  </ng-template>
-</p-dialog>
