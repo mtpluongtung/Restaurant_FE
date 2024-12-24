@@ -236,6 +236,18 @@
     ::ng-deep.p-dialog .p-dialog-header{
         padding: 30px;
     }
+    @media (max-width: 932px) {
+        .food-item {
+          height: 90vh;
+        }
+        .menu-group li a {
+            font-size: 15px;
+        }
+        ::ng-deep.p-dialog .p-dialog-header{
+            padding: 30px;
+        }
+       
+      }
   @media (max-width: 844px) {
     .food-item {
       height: 90vh;

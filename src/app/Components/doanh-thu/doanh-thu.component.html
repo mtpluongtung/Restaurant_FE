@@ -1,3 +1,100 @@
-<p>
-  doanh-thu works!
-</p>
+<p-tabs value="0">
+  <p-tablist>
+      <p-tab value="0">Theo Bảng</p-tab>
+      <p-tab value="1">Biểu cột</p-tab>
+      <p-tab value="2">Biểu đường</p-tab>
+  </p-tablist>
+  <p-tabpanels>
+    <div class="row mb-2 d-flex">
+      <div class="col-4">
+        <span>Ngày</span>
+        <div class="row">
+          <div class="col-12 d-flex align-items-center">
+            <p-datepicker [(ngModel)]="doanhThuForm.From" name="from" [dateFormat]="'dd/mm/yy'"/>
+            <span style="padding:5px">Đến </span>
+            <p-datepicker [(ngModel)]="doanhThuForm.To" name="to" [dateFormat]="'dd/mm/yy'"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 d-flex justify-content-between mt-4">
+        <p-button styleClass="p-button-raised  p-button-success p-button-xs" (click)="GetDoanhThuList()">Tìm kiếm</p-button>
+      </div>
+    </div>
+      <p-tabpanel value="0">
+        <div class="card">
+          <p-table [columns]="cols" 
+          [value]="doanhThuList" 
+          [tableStyle]="{ 'min-width': '50rem' }"
+          showGridlines
+          [paginator]="true"
+          [rows]="10">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th class="grid_header_color sticky_header"
+                [ngStyle]="{'width': '10px', 'text-align': 'center', 'min-height':'50px'}">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th class="grid_header_color sticky_header" *ngFor="let col of columns" style="text-align: center;">
+                {{col.header}}
+              </th>
+              <th class="grid_header_color sticky_header"> Tác vụ</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+            <tr>
+              <td [ngStyle]="{'height': '5px','width': '10px', 'text-align': 'center'}">
+                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+              </td>
+              
+              <td *ngFor="let col of columns" [ngSwitch]="col.field" style="text-align: center;">
+                <div  *ngSwitchCase="'ngay'">
+                  <p>{{ rowData['ngay'] | date:'dd/MM/yyyy'}}</p>
+                </div>
+                <div  *ngSwitchCase="'doanhThu'" >
+                  <p>{{rowData['doanhThu'] | number}}</p>
+                </div>
+                <div [ngStyle]="{'height': '5px', 'text-align': rowData[col.align]}" *ngSwitchCase="'Stt'">
+                    <p>{{ index +1}}</p>
+                </div>
+                <p *ngSwitchDefault> {{ rowData[col.field] }}</p>
+              </td>
+              
+              <td style="text-align: center;">
+                <p-button (click)="showDetails(rowData)" icon="pi pi-eye"
+                pTooltip="Xem chi tiết" 
+                tooltipPosition="top"/>
+              </td>
+            </tr>
+          </ng-template>
+          </p-table>
+        </div>
+      </p-tabpanel>
+      <p-tabpanel value="1">
+        <div class="card">
+          <p-chart type="bar" [data]="data" [options]="options" height="60vh" />
+      </div>
+      </p-tabpanel>
+      <p-tabpanel value="2">
+         <div class="card">
+            <p-chart type="line" [data]="data" [options]="options" height="60vh" />
+         </div>
+      </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>
+
+
+
+<!-- chi tiết hóa đơn -->
+<p-dialog
+    header="Header"
+    [(visible)]="visible"
+    [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false">
+        <p>
+            Lorem ipsum dolor sit amet...
+        </p>
+</p-dialog>
+

@@ -15,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class AppComponent {
   public isLoggedIn$: Observable<boolean> = new Observable<boolean>(observer => {
-    observer.next(false);
+    observer.next(true);
     observer.complete();
   });
 

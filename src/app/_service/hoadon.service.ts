@@ -32,4 +32,13 @@ export class HoadonService {
   thanhToan(id: number): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}HoaDon/thanh-toan?id=${id}`, {});
   }
+  DoanhThuHoaDon(params :any): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}HoaDon/doanh-thu-hoa-don`, params);
+  }
+  DoanhThuChiTiet(data : string) : Observable<any> {
+    let requestParams = new HttpParams()
+    .set('request', data)
+    
+    return this.http.get<any>(`${environment.apiUrl}HoaDon/doanh-thu-chi-tiet`, { params: requestParams });
+  }
 }
