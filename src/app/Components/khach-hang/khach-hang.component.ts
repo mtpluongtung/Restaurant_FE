@@ -128,8 +128,24 @@ export class KhachHangComponent implements OnInit {
         return 'do-an';
       case 1:
         return 'do-uong';
+      case 3:
+        return 'dung-cu';
       default:
         return '';
+    }
+  }
+  getTypeName(type: number): string {
+    switch (type) {
+      case 2:
+        return 'buffe-combo';
+      case 0:
+        return 'Đồ ăn';
+      case 1:
+        return 'Đồ uống';
+      case 3:
+        return 'Dụng cụ';
+      default:
+        return 'Không xác định';
     }
   }
   addFood(item: Menu) {
@@ -181,29 +197,28 @@ export class KhachHangComponent implements OnInit {
     }
     this.SumHoaDon();
   }
-  GoiMon(){
-      let data = this.setInMenu.monAn.filter((mon: any) => mon.soLuong > 0);
-      let monAnRequest = [];
-      for (let item of data) 
-        {
-          let monAn = {
-            IdMonAn : item.id,
-            SoLuong : item.soLuong
-          }
-          monAnRequest.push(monAn);
-        }
-      var request = {
-        MaOrder : this.orderId,
-        MonAn : monAnRequest,
-        SetId : this.setInMenu.id,
+  GoiMon() {
+    let data = this.setInMenu.monAn.filter((mon: any) => mon.soLuong > 0);
+    let monAnRequest = [];
+    for (let item of data) {
+      let monAn = {
+        IdMonAn: item.id,
+        SoLuong: item.soLuong
       }
-      this.orderService.GoiMon(request).subscribe((res : any) => {
-        this.messageService.add({severity:'success', summary:'Thành công', detail:'Gọi món thành công'});
-        this.signalRService.sendMessage("Có order mới");
-        this.visible = false;
-      }, err=>{
-        this.messageService.add({severity:'error', summary:'Thất bại', detail:err.error.Message});
-      });
+      monAnRequest.push(monAn);
+    }
+    var request = {
+      MaOrder: this.orderId,
+      MonAn: monAnRequest,
+      SetId: this.setInMenu.id,
+    }
+    this.orderService.GoiMon(request).subscribe((res: any) => {
+      this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Gọi món thành công' });
+      this.signalRService.sendMessage("Có order mới");
+      this.visible = false;
+    }, err => {
+      this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: err.error.Message });
+    });
   }
   SumHoaDon() {
 
@@ -248,11 +263,11 @@ export class KhachHangComponent implements OnInit {
       this.hoadon.banId = this.banId;
       this.hoadon.tongTien = this.Thanhtien;
       this.orderService.CofirmOrder(this.hoadon).subscribe((res) => {
-        this.messageService.add({severity:'success', summary:'Thành công', detail:'Đặt món thành công'});
+        this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Đặt món thành công' });
         this.signalRService.sendMessage("Có order mới");
         this.ResetOrder();
-      },err=>{
-        this.messageService.add({severity:'error', summary:'Thất bại', detail:'Đặt món thất bại'});
+      }, err => {
+        this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: 'Đặt món thất bại' });
       })
     }
 

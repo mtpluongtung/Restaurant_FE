@@ -8,9 +8,10 @@
 <div class="menu-order">
   <div class="menu-tab">
     <ul class="menu-group">
+      <li><a href="#dung-cu" id="link-cu" (click)="scrollToSection('dung-cu',$event)">Dụng cụ</a></li>
       <li><a href="#buffe-combo" id="link-buffe" (click)="scrollToSection('buffe-combo',$event)">Bufe - Combo</a></li>
-      <li><a href="#do-an" id="link-food" (click)="scrollToSection('do-an',$event)">Đồ ăn</a></li>
       <li><a href="#do-uong" id="link-drink" (click)="scrollToSection('do-uong',$event)">Đồ uống</a></li>
+      <li><a href="#do-an" id="link-food" (click)="scrollToSection('do-an',$event)">Đồ ăn</a></li>
     </ul>
   </div>
   <div class="memu-item" (scroll)="onScroll($event)">
@@ -21,7 +22,7 @@
           <div class="d-flex flex-stack gap-5">
             <div class="d-flex flex-stack gap-2 mb-1">
               <span class="text-white  mb-3 fs-5 fw-bold">
-                {{item.type==0?'Đồ ăn':'Buffe - Combo'}}
+                {{getTypeName(item.type)}}
               </span>
 
             </div>
