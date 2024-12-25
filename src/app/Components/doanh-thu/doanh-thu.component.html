@@ -1,8 +1,8 @@
 <p-tabs value="0">
   <p-tablist>
-      <p-tab value="0">Theo Bảng</p-tab>
-      <p-tab value="1">Biểu cột</p-tab>
-      <p-tab value="2">Biểu đường</p-tab>
+    <p-tab value="0">Theo Bảng</p-tab>
+    <p-tab value="1">Biểu cột</p-tab>
+    <p-tab value="2">Biểu đường</p-tab>
   </p-tablist>
   <p-tabpanels>
     <div class="row mb-2 d-flex">
@@ -10,24 +10,21 @@
         <span>Ngày</span>
         <div class="row">
           <div class="col-12 d-flex align-items-center">
-            <p-datepicker [(ngModel)]="doanhThuForm.From" name="from" [dateFormat]="'dd/mm/yy'"/>
+            <p-datepicker [(ngModel)]="doanhThuForm.From" name="from" [dateFormat]="'dd/mm/yy'" />
             <span style="padding:5px">Đến </span>
-            <p-datepicker [(ngModel)]="doanhThuForm.To" name="to" [dateFormat]="'dd/mm/yy'"/>
+            <p-datepicker [(ngModel)]="doanhThuForm.To" name="to" [dateFormat]="'dd/mm/yy'" />
           </div>
         </div>
       </div>
       <div class="col-2 d-flex justify-content-between mt-4">
-        <p-button styleClass="p-button-raised  p-button-success p-button-xs" (click)="GetDoanhThuList()">Tìm kiếm</p-button>
+        <p-button styleClass="p-button-raised  p-button-success p-button-xs" (click)="GetDoanhThuList()">Tìm
+          kiếm</p-button>
       </div>
     </div>
-      <p-tabpanel value="0">
-        <div class="card">
-          <p-table [columns]="cols" 
-          [value]="doanhThuList" 
-          [tableStyle]="{ 'min-width': '50rem' }"
-          showGridlines
-          [paginator]="true"
-          [rows]="10">
+    <p-tabpanel value="0">
+      <div class="card">
+        <p-table [columns]="cols" [value]="doanhThuList" [tableStyle]="{ 'min-width': '50rem' }" showGridlines
+          [paginator]="true" [rows]="10">
           <ng-template pTemplate="header" let-columns>
             <tr>
               <th class="grid_header_color sticky_header"
@@ -45,56 +42,111 @@
               <td [ngStyle]="{'height': '5px','width': '10px', 'text-align': 'center'}">
                 <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
               </td>
-              
+
               <td *ngFor="let col of columns" [ngSwitch]="col.field" style="text-align: center;">
-                <div  *ngSwitchCase="'ngay'">
+                <div *ngSwitchCase="'ngay'">
                   <p>{{ rowData['ngay'] | date:'dd/MM/yyyy'}}</p>
                 </div>
-                <div  *ngSwitchCase="'doanhThu'" >
+                <div *ngSwitchCase="'doanhThu'">
                   <p>{{rowData['doanhThu'] | number}}</p>
                 </div>
                 <div [ngStyle]="{'height': '5px', 'text-align': rowData[col.align]}" *ngSwitchCase="'Stt'">
-                    <p>{{ index +1}}</p>
+                  <p>{{ index +1}}</p>
                 </div>
                 <p *ngSwitchDefault> {{ rowData[col.field] }}</p>
               </td>
-              
+
               <td style="text-align: center;">
-                <p-button (click)="showDetails(rowData)" icon="pi pi-eye"
-                pTooltip="Xem chi tiết" 
-                tooltipPosition="top"/>
+                <p-button (click)="showDetails(rowData)" icon="pi pi-eye" pTooltip="Xem chi tiết"
+                  tooltipPosition="top" />
               </td>
             </tr>
           </ng-template>
-          </p-table>
-        </div>
-      </p-tabpanel>
-      <p-tabpanel value="1">
-        <div class="card">
-          <p-chart type="bar" [data]="data" [options]="options" height="60vh" />
+        </p-table>
       </div>
-      </p-tabpanel>
-      <p-tabpanel value="2">
-         <div class="card">
-            <p-chart type="line" [data]="data" [options]="options" height="60vh" />
-         </div>
-      </p-tabpanel>
+    </p-tabpanel>
+    <p-tabpanel value="1">
+      <div class="card">
+        <p-chart type="bar" [data]="data" [options]="options" height="60vh" />
+      </div>
+    </p-tabpanel>
+    <p-tabpanel value="2">
+      <div class="card">
+        <p-chart type="line" [data]="data" [options]="options" height="60vh" />
+      </div>
+    </p-tabpanel>
   </p-tabpanels>
 </p-tabs>
 
 
 
 <!-- chi tiết hóa đơn -->
-<p-dialog
-    header="Header"
-    [(visible)]="visible"
-    [modal]="true"
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-    [style]="{ width: '50vw' }"
-    [draggable]="false"
-    [resizable]="false">
-        <p>
-            Lorem ipsum dolor sit amet...
-        </p>
-</p-dialog>
+<p-dialog header="Doanh thu chi tiết ngày {{currentDateSelected}}" [(visible)]="visible" [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '90vw' }" [draggable]="false"
+  [resizable]="false">
+  <div class="card">
+    <p-table [value]="DoanhThuChiTiet" dataKey="maOrder" [tableStyle]="{ 'min-width': '60rem' }"
+      [expandedRowKeys]="expandedRows" (onRowExpand)="onRowExpand($event)" (onRowCollapse)="onRowCollapse($event)">
+      <ng-template #header>
+        <tr>
+          <th style="width: 40px;"></th>
+          <th>STT</th>
+          <th>Mã order</th>
+          <th>Tổng tiền</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-product let-expanded="expanded" let-i="rowIndex">
+        <tr>
+          <td>
+            <p-button type="button" pRipple [pRowToggler]="product" [text]="true" [rounded]="true" [plain]="true"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+          </td>
+          <td>{{ i+1 }}</td>
+          <td>{{ product.maOrder }}</td>
+          <td>{{ product.tongTien | number}}</td>
+          <td>{{ product.price | currency : 'USD' }}</td>
+          <td>{{ product.category }}</td>
 
+        </tr>
+      </ng-template>
+      <ng-template #expandedrow let-product>
+        <tr>
+          <td colspan="7">
+            <div class="p-4">
+              <p-table [value]="product.chiTietHoaDon" dataKey="id">
+                <ng-template #header>
+        <tr>
+          <th>STT </th>
+          <th>Tên </th>
+          <th>Số lượng </th>
+          <th>Đơn giá</th>
+          <th>Thành tiền</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-order  let-i="rowIndex">
+        <tr>
+          <td>{{ i+1 }}</td>
+          <td>{{ order.tenMonAn }}</td>
+          <td>{{ order.soluong }}</td>
+          <td>{{ order.donGia }}</td>
+          <td>{{ order.thanhTien | number }}</td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="6">There are no order for this product yet.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  </td>
+  </tr>
+  </ng-template>
+    </p-table>
+  </div>
+  <ng-template #footer>
+    <div class="d-flex justify-content-start">
+        <h3>Tổng tiền : {{currentTotalValue | number}}</h3>
+    </div>
+  </ng-template>
+</p-dialog>

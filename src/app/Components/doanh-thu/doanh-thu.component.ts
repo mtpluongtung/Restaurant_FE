@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HoadonService } from '../../_service/hoadon.service';
 import { TableModule } from 'primeng/table';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { TabsModule } from 'primeng/tabs';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePicker } from 'primeng/datepicker';
 import { Tooltip } from 'primeng/tooltip';
 import { Dialog } from 'primeng/dialog';
+import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 @Component({
   selector: 'app-doanh-thu',
   templateUrl: './doanh-thu.component.html',
@@ -24,6 +25,10 @@ export class DoanhThuComponent implements OnInit {
   data: any;
   options: any;
   visible: boolean = false;
+  DoanhThuChiTiet: any=[];
+  expandedRows = {};
+  currentDateSelected: any;
+  currentTotalValue: any;
   ngOnInit() {
     this.cols = [
       { field: 'Stt', header: 'STT' },
@@ -94,7 +99,10 @@ GetDoanhThuList(){
 }
 showDetails(data: any) {
   this.hoadonService.DoanhThuChiTiet(data.ngay).subscribe((res: any) => {
-    console.log('showDetails',res);
+    this.DoanhThuChiTiet = res;
+    this.currentDateSelected = this.FormatDate(new Date(data.ngay));
+    this.currentTotalValue = data.doanhThu;
+    console.log('Doanh thu chi tiet:',this.currentTotalValue);
     this.visible = true;
   });
 
@@ -103,5 +111,12 @@ FormatDate(date: Date): string {
   let data = date.toISOString().split('T')[0];
   const [year, month, day] = data.split('-');
   return `${day}/${month}/${year}`;
+}
+onRowExpand(event: TableRowExpandEvent) {
+ 
+}
+
+onRowCollapse(event: TableRowCollapseEvent) {
+
 }
 }
