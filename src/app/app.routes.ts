@@ -8,6 +8,7 @@ import { BepComponent } from './Components/bep/bep.component';
 import { DoanhThuComponent } from './Components/doanh-thu/doanh-thu.component';
 import { KhachHangComponent } from './Components/khach-hang/khach-hang.component';
 import { MonAnComponent } from './Components/mon-an/mon-an.component';
+import { SetComponent } from './Components/set/set.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,5 +21,6 @@ export const routes: Routes = [
     { path: 'bep', component: BepComponent },
     { path: 'doanh-thu', component: DoanhThuComponent },
     { path: 'khach-hang', component: KhachHangComponent },
-    { path: 'mon-an', component: MonAnComponent }
+    { path: 'mon-an', component: MonAnComponent },
+    { path: 'set', component: SetComponent }
 ];

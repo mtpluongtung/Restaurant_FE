@@ -251,8 +251,24 @@ export class MenuComponent implements OnInit {
         return 'do-an';
       case 1:
         return 'do-uong';
+      case 3:
+        return 'dung-cu';
       default:
         return '';
+    }
+  }
+  getTypeName(type: number): string {
+    switch (type) {
+      case 2:
+        return 'buffe-combo';
+      case 0:
+        return 'Đồ ăn';
+      case 1:
+        return 'Đồ uống';
+      case 3:
+        return 'Dụng cụ';
+      default:
+        return 'Không xác định';
     }
   }
 }

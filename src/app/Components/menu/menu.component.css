@@ -195,7 +195,7 @@ body {
   outline: none;
 }
 .menu-group li a.active {
-  background-color: #6e61e0;
+  background-color: #d30e49;
   color: white;
 }
 @media (max-width: 2560px) {
