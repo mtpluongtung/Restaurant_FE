@@ -29,16 +29,22 @@ export class SetComponent implements OnInit {
 
     { field: 'stt', title: 'STT', align: 'center' },
     { field: 'name', title: 'Tên', align: 'center' },
-    { field: 'loai', title: 'Loại', align: 'center' },
     { field: 'gia', title: 'Đơn giá', align: 'center' },
     { field: "url", title: "Hình ảnh", align: 'center' },
+  ];
+  colsMonAn: any = [
+
+    { field: 'stt', title: 'STT', align: 'center' },
+    { field: 'name', title: 'Tên', align: 'center' },
+    { field: "url", title: "Hình ảnh", align: 'center' }
+    
   ];
   Loais = [
     { label: 'Đồ ăn', value: '0' },
     { label: 'Đồ uống', value: '1' },
     { label: 'Dụng cụ', value: '3' },
   ];
-  DsMonAn: any[] = [];
+  DsSet: any[] = [];
   totalRecords: number = 0; // Tổng số bản ghi
   loading: boolean = false;
   selectedItem: any = [];
@@ -56,11 +62,20 @@ export class SetComponent implements OnInit {
     Page: this.pageNumber,
     PageSize: this.pageSize
   };
+  searchMonAn: any = {
+    text: '',
+    Page: this.pageNumber,
+    PageSize: this.pageSize
+  };
   displayDialog: boolean = false;
   monAn: MonAn = new MonAn();
   uploadedFiles: any[] = [];
   apiURL = environment.apiUrl;
-  constructor(private setServices: SetService, private messageService: MessageService, private confirmationService : ConfirmationService)  { }
+  ShowDsMonAn : boolean = false;
+  DsMonAn : any[] = [];
+  selectedItemMonAn : any = [];
+  DsMonAnSelected : any = []; 
+  constructor(private setServices: SetService, private messageService: MessageService, private confirmationService : ConfirmationService, private monAnServices : MonAnService)  { }
 
   ngOnInit() {
     this.LoadData();
@@ -70,10 +85,10 @@ export class SetComponent implements OnInit {
     // Gọi API lấy dữ liệu
     this.setServices.getListMonAn(this.search).subscribe({
       next: (data) => {
-        this.DsMonAn = data.items; // Dữ liệu trên trang hiện tại
+        this.DsSet = data.items; // Dữ liệu trên trang hiện tại
         this.totalRecords = data.totalRecords; // Tổng số bản ghi
         this.loading = false;
-        console.log('Data:', this.DsMonAn);
+        console.log('Data:', this.DsSet);
       },
       error: (err) => {
         this.loading = false;
@@ -81,6 +96,8 @@ export class SetComponent implements OnInit {
       }
     });
   }
+
+  
   loadDataLazy(event: any): void {
     this.loading = true;
 
@@ -155,9 +172,10 @@ export class SetComponent implements OnInit {
     let fromData = new FormData();
     fromData.append('Name', this.monAn.tenMonAn);
     fromData.append('Gia', this.monAn.gia.toString());
-    fromData.append('Loai', this.monAn.loai);
     fromData.append('File', this.uploadedFiles[0]);
-    fromData.append('Id', this.monAn.id.toString());
+    for (let key of this.DsMonAnSelected) {
+      fromData.append('MonAn', key.id)
+    }
     fromData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
@@ -170,10 +188,55 @@ export class SetComponent implements OnInit {
         this.selectedItem = [];
       },
       error: (err) => {
-        this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: err.error.Message });
+        this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: "Vui lòng liên hệ quản trị viên" });
         console.error('Error loading data:', err);
       }
     });
   }
-
+  ThemMonAnVaoSet(){
+    this.LoadDanhSachMonAn();
+    this.ShowDsMonAn = true;
+  }
+  LoadDanhSachMonAn() {
+    this.loading = true;
+    // Gọi API lấy dữ liệu
+    this.monAnServices.getListMonAn(this.searchMonAn).subscribe({
+      next: (data) => {
+        this.DsMonAn = data.data.items; // Dữ liệu trên trang hiện tại
+        this.totalRecords = data.data.totalRecords; // Tổng số bản ghi
+        this.loading = false;
+        console.log('Data:', this.DsMonAn);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Error loading data:', err);
+      }
+    });
+  }
+  getLoaiDisplay(loai: number): string {
+    switch (loai) {
+      case 0:
+        return 'Đồ ăn';
+      case 1:
+        return 'Đồ uống';
+      case 3:
+        return 'Dụng cụ';
+      default:
+        return 'Không xác định';
+    }
+  }
+  ChonMonAn(){
+    this.DsMonAnSelected = this.selectedItemMonAn;
+    this.ShowDsMonAn = false;
+  }
+  XoaMonAn(data:any){
+    if (Array.isArray(this.DsMonAnSelected)) {
+      this.DsMonAnSelected = this.DsMonAnSelected.filter(item => item !== data);
+  } else if (this.DsMonAnSelected?.remove) {
+      // If `remove` is a valid method (custom or library-based)
+      this.DsMonAnSelected.remove(data);
+  } else {
+      console.error("selectedItemMonAn does not support item removal");
+  }
+  }
 }
