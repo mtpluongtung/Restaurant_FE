@@ -12,13 +12,13 @@ import { Select } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { Bep } from '../../_model/bep';
 import { Toast } from 'primeng/toast';
-
+import { Tag } from 'primeng/tag';
 @Component({
   selector: 'app-bep',
   templateUrl: './bep.component.html',
   styleUrls: ['./bep.component.css'],
   standalone: true,
-  imports: [TableModule, CommonModule, ButtonModule, CalendarModule, Menu, Dialog, Select,FormsModule,Toast],
+  imports: [TableModule, CommonModule, ButtonModule, CalendarModule, Menu, Dialog, Select,FormsModule,Toast,Tag],
   providers: [MessageService]
 })
 
@@ -166,4 +166,5 @@ export class BepComponent implements OnInit {
     this.intervals.forEach(interval => clearInterval(interval));
     this.intervals = [];
   }
+
 }

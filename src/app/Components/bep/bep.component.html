@@ -19,7 +19,9 @@ responsiveLayout="scroll"
 styleClass="p-datatable-gridlines p-datatable-sm"
 [(selection)]="selectedItem"
 dataKey="id"
-[scrollable]="true">
+[scrollable]="true"
+[rowsPerPageOptions]="[5, 10, 25,100]"
+>>
 <ng-template pTemplate="header" let-columns>
   <tr>
     <th class="grid_header_color sticky_header"
@@ -47,7 +49,10 @@ dataKey="id"
         <p>{{ countdownTimers[index] }}</p>
       </div>
       <div  *ngSwitchCase="'trangThai'" >
-        <p  [ngClass]="{'text-danger': rowData['trangThai'] == 0, 'text-warning': rowData['trangThai'] == 1, 'text-success': rowData['trangThai'] == 2}">{{ rowData['trangThai'] == 0 ? 'Đang chờ' : rowData['trangThai'] == 1 ? 'Đang thực hiện':'Đã hoàn thành' }}</p>
+        <p-tag *ngIf=" rowData['trangThai'] == 2" icon="pi pi-check" severity="success" value="Hoàn thành" />
+        <p-tag *ngIf=" rowData['trangThai'] == 1" icon="pi pi-info-circle" severity="info" value="Đang thực hiện" />
+        <p-tag *ngIf=" rowData['trangThai'] ==0" icon="pi pi-exclamation-triangle" severity="warn" value="Đang chờ" />
+        
       </div>
       <div [ngStyle]="{'height': '5px', 'text-align': rowData[col.align]}" *ngSwitchCase="'stt'">
           <p>{{ index +1}}</p>
