@@ -15,7 +15,7 @@
   </div>
   <div class="memu-item" (scroll)="onScroll($event)">
     <div class="food-item border p-2 section" *ngFor="let item of menulist"  [id]="getIdForType(item.type)" >
-      <img src="{{item.url}}" class="w-lg-225px rounded w-50">
+      <img src="{{  apiURL+item.url}}" class="w-lg-225px rounded w-50">
       <div class="food-item-card card card-hover-border">
         <div class="food-item-details">
           <div class="d-flex flex-stack gap-5">
@@ -56,7 +56,7 @@
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
   <div class="row">
     <div class="col-sm-3 border d-flex justify-content-md-center align-items-center" *ngFor="let monAn of setInMenu.monAn">
-      <img src="{{monAn.url}}"  class="w-lg-225px rounded w-50">
+      <img src="{{apiURL + monAn.url}}"  class="w-lg-225px rounded w-50">
       <h6 style=" margin-left: 15px;">{{monAn.name}}</h6>
     </div>
   </div>

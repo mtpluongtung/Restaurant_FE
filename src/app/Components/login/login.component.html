@@ -1,0 +1,31 @@
+<div class="fadeInDown animated loginColumns">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="text-center">
+        <img alt="gusan" height="120" src="images/logo/logo_dark.png" width="120">
+      </p>
+      <br>
+      <h4 class="font-bold text-center" style="line-height: 30px">
+        HỆ THỐNG QUẢN LÝ NHÀ HÀNG
+      </h4>
+    </div>
+    <div class="col-md-6">
+      <form (ngSubmit)="onSubmit()">
+        <h2 class="mb-3">Đăng nhập</h2>
+        <div class="form-group  mt-3">
+          <input type="text" class="form-control" id="username" name="username"  placeholder="Nhập tên đăng nhập" [(ngModel)]="loginForm.Username">
+        </div>
+        <div class="form-group mt-3">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" [(ngModel)]="loginForm.PassWord">
+        </div>
+       <div class="form-group mt-3 w-100">
+          <p-button type="submit" ngClass="w-100" label="Đăng nhập" styleClass="p-button-sm p-button-success" [loading]="submitted" loadingIcon="pi pi-bell"></p-button>
+       </div>
+      </form>
+    </div>
+    <hr style="width: 100vw;" class="mt-2">
+    <p class=" w-100" style="text-align: center;">
+      <small>Hệ thống được phát triển bởi Lương Đức Tùng</small>
+    </p>
+  </div>
+</div>

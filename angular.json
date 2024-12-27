@@ -21,7 +21,6 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -45,6 +44,11 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "5MB",
                   "maximumError": "10MB"
+                }
+              ], "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -81,7 +85,6 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"

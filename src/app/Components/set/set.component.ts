@@ -186,6 +186,7 @@ export class SetComponent implements OnInit {
         this.LoadData();
         this.monAn = new MonAn();
         this.selectedItem = [];
+        this.uploadedFiles = [];
       },
       error: (err) => {
         this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: "Vui lòng liên hệ quản trị viên" });

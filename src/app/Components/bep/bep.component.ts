@@ -86,7 +86,7 @@ export class BepComponent implements OnInit {
   }
   SelectRow(data: any, event: Event): void {
     this.visible = true;
-    this.currentIteselected = data;
+    this.currentIteselected = {...data};
     console.log(this.currentIteselected);
   }
 

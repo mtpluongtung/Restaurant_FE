@@ -13,6 +13,7 @@ import { SignalRService } from '../../_service/SignalR.service';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-khach-hang',
@@ -52,6 +53,7 @@ export class KhachHangComponent implements OnInit {
   selectedOrder: any[] = [];
   sections: any = [];
   showWarning: boolean = false;
+    apiURL = environment.apiUrl;
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,

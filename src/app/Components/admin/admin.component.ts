@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { PanelMenu } from 'primeng/panelmenu';
+import { AuthenticationService } from '../../_service/Authentication.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -11,10 +12,13 @@ import { PanelMenu } from 'primeng/panelmenu';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationServices : AuthenticationService) { }
 
   ngOnInit() {
 
   }
-
+  LogOut(){
+    console.log('logout');
+    this.authenticationServices.logout();
+  }
 }

@@ -13,6 +13,7 @@ import { SignalRService } from '../../_service/SignalR.service';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -51,6 +52,7 @@ export class MenuComponent implements OnInit {
   Thanhtien: number = 0;
   selectedOrder: any[] = [];
   sections: any = [];
+  apiURL = environment.apiUrl;
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,

@@ -10,19 +10,22 @@ import { KhachHangComponent } from './Components/khach-hang/khach-hang.component
 import { MonAnComponent } from './Components/mon-an/mon-an.component';
 import { SetComponent } from './Components/set/set.component';
 import { BanComponent } from './Components/ban/ban.component';
+import { LoginComponent } from './Components/login/login.component';
+import { AuthGuard } from './_helper/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
+    {path: 'login', component: LoginComponent},
     { path: 'home', component: HomeComponent },
-    { path: 'dat-ban', component: DatBanComponent },
-    { path: 'menu/:maOrder/:banId/:slkh', component: MenuComponent },
-    { path: 'menu', component: MenuComponent },
-    { path: 'admin', component: AdminComponent },
-    { path: 'hoa-don', component: HoadonComponent },
-    { path: 'bep', component: BepComponent },
-    { path: 'doanh-thu', component: DoanhThuComponent },
+    { path: 'dat-ban', component: DatBanComponent , canActivate: [AuthGuard]},
+    { path: 'menu/:maOrder/:banId/:slkh', component: MenuComponent  , canActivate: [AuthGuard]},
+    { path: 'menu', component: MenuComponent  , canActivate: [AuthGuard]},
+    { path: 'admin', component: AdminComponent  , canActivate: [AuthGuard]},
+    { path: 'hoa-don', component: HoadonComponent , canActivate: [AuthGuard]},
+    { path: 'bep', component: BepComponent  , canActivate: [AuthGuard]},
+    { path: 'doanh-thu', component: DoanhThuComponent , canActivate: [AuthGuard] },
     { path: 'khach-hang/:maOrder', component: KhachHangComponent },
-    { path: 'mon-an', component: MonAnComponent },
-    { path: 'set', component: SetComponent },
-    { path: 'cau-hinh-ban', component: BanComponent }
+    { path: 'mon-an', component: MonAnComponent  , canActivate: [AuthGuard]},
+    { path: 'set', component: SetComponent  , canActivate: [AuthGuard]},
+    { path: 'cau-hinh-ban', component: BanComponent  , canActivate: [AuthGuard]}
 ];
