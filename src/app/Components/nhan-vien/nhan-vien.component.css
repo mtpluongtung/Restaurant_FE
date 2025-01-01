@@ -1,0 +1,4 @@
+::ng-deep.p-toast {
+    z-index: 9999 !important; /* Đảm bảo toast luôn hiển thị trên cùng */
+  }
+  

@@ -12,6 +12,7 @@ import { SetComponent } from './Components/set/set.component';
 import { BanComponent } from './Components/ban/ban.component';
 import { LoginComponent } from './Components/login/login.component';
 import { AuthGuard } from './_helper/auth.guard';
+import { NhanVienComponent } from './Components/nhan-vien/nhan-vien.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,5 +28,6 @@ export const routes: Routes = [
     { path: 'khach-hang/:maOrder', component: KhachHangComponent },
     { path: 'mon-an', component: MonAnComponent  , canActivate: [AuthGuard]},
     { path: 'set', component: SetComponent  , canActivate: [AuthGuard]},
-    { path: 'cau-hinh-ban', component: BanComponent  , canActivate: [AuthGuard]}
+    { path: 'cau-hinh-ban', component: BanComponent  , canActivate: [AuthGuard]},
+    { path: 'nhan-vien', component: NhanVienComponent  , canActivate: [AuthGuard]}
 ];
