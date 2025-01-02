@@ -10,19 +10,18 @@ import { FormsModule } from '@angular/forms';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
-import { MonAn } from '../../_model/monAn.model';
-import { FileUpload } from 'primeng/fileupload';
-import { Select } from 'primeng/select';
 import { environment } from '../../../environments/environment';
 import { NhanVienService } from '../../_service/nhan-vien.service';
 import { Menu } from 'primeng/menu';
-
+import { TabsModule } from 'primeng/tabs';
+import { DatePicker } from 'primeng/datepicker';
+import { Tag } from 'primeng/tag';
 @Component({
   selector: 'app-nhan-vien',
   templateUrl: './nhan-vien.component.html',
   styleUrls: ['./nhan-vien.component.css'],
   standalone: true,
-  imports: [TableModule, CommonModule, ButtonModule, Dialog, NgxPrintModule, FormsModule, Toast, ConfirmDialog, FileUpload, Select,Menu],
+  imports: [TableModule, CommonModule, ButtonModule, Dialog, NgxPrintModule, FormsModule, Toast, ConfirmDialog,Menu,TabsModule,DatePicker,Tag],
   providers: [ConfirmationService, MessageService]
 })
 export class NhanVienComponent implements OnInit {
@@ -38,9 +37,22 @@ export class NhanVienComponent implements OnInit {
     { field: 'address', title: 'Địa', align: 'center' },
 
   ];
+  colsCC: any = [
+
+    { field: 'stt', title: 'STT', align: 'center' },
+    { field: 'tenNhanVien', title: 'Họ tên', align: 'center' },
+    { field: 'maNhanVien', title: 'Mã Nhân Viên', align: 'center' },
+    { field: 'checkIn', title: 'Giờ checkin', align: 'center' },
+    { field: 'checkOut', title: 'Giời checkout', align: 'center' },
+    { field: 'totalTime', title: 'Tổng thời gian', align: 'center' },
+    { field: 'TrangThai', title: 'Trạng thái', align: 'center' },
+  ];
   DsNhanVien: any[] = [];
+  DsChamCong: any[] = [];
   totalRecords: number = 0; // Tổng số bản ghi
+  totalRecordsCC: number = 0; // Tổng số bản ghi
   loading: boolean = false;
+  loadingCC: boolean = false;
   selectedItem: any = [];
   items: MenuItem[] | undefined;
   pageNumber: number = 1; // Trang hiện tại
@@ -56,6 +68,13 @@ export class NhanVienComponent implements OnInit {
     Page: this.pageNumber,
     PageSize: this.pageSize
   };
+  ChamCongForm ={
+    From: new Date(new Date().setDate(new Date().getDate() - 30)), // 30 ngày trước
+    To: new Date(), // Ngày hiện tại
+    Page: 1,
+    PageSize: 25,
+    text: '',
+  }
   displayDialog: boolean = false;
   NhanVien: NhanVien = new NhanVien();
   uploadedFiles: any[] = [];
@@ -69,10 +88,10 @@ export class NhanVienComponent implements OnInit {
       {
         label: 'Tác vụ',
         items: [
-          {
-            label: 'Tạo ca làm việc',
-            icon: 'pi pi-list-check'
-          },
+          // {
+          //   label: 'Tạo ca làm việc',
+          //   icon: 'pi pi-list-check'
+          // },
           {
             label: 'Tạo URL Checkin',
             icon: 'pi pi-link',
@@ -82,16 +101,19 @@ export class NhanVienComponent implements OnInit {
           },
           {
             label: 'Tạo URL CheckOut',
-            icon: 'pi pi-directions'
+            icon: 'pi pi-directions',
+            command: () => {
+              this.GenURLCheckOut();
+            }
           },
-          {
-            label: 'Tạo chấm công nhân viên',
-            icon: 'pi pi-calendar'
-          },
-          {
-            label: 'Tổng hợp công',
-            icon: 'pi pi-dollar'
-          }
+          // {
+          //   label: 'Tạo chấm công nhân viên',
+          //   icon: 'pi pi-calendar'
+          // },
+          // {
+          //   label: 'Tổng hợp công',
+          //   icon: 'pi pi-dollar'
+          // }
         ]
       }
     ];
@@ -113,6 +135,15 @@ export class NhanVienComponent implements OnInit {
     });
   }
   loadDataLazy(event: any): void {
+    this.loading = true;
+
+    // Tính số trang và kích thước trang
+    this.pageNumber = Math.floor(event.first / event.rows) + 1; // Trang hiện tại
+    this.pageSize = event.rows; // Kích thước trang
+    this.LoadData();
+
+  }
+  loadDataLazyCC(event: any): void {
     this.loading = true;
 
     // Tính số trang và kích thước trang
@@ -200,6 +231,53 @@ export class NhanVienComponent implements OnInit {
     });
   }
   GenURLCheckin() {
-    console.log('GenURLCheckin', this.currentIteselected );
+    let text = this.apiURL + 'NhanVien/CheckIn?token=' + this.currentIteselected.token;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text)
+          .then(() => {
+            this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Copy thành công' });
+          })
+          .catch((err) => {
+            this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: err });
+          });
+  } else {
+      console.error("Clipboard API is not supported on this browser.");
+  }
+  }
+  GenURLCheckOut() {
+    let text = this.apiURL + 'NhanVien/CheckOut?token=' + this.currentIteselected.token;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text)
+          .then(() => {
+            this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Copy thành công' });
+          })
+          .catch((err) => {
+            this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: err });
+          });
+  } else {
+      console.error("Clipboard API is not supported on this browser.");
+  }
+  }
+  LoadChamCong(){
+    this.nhanVienServives.DanhSachChamCong(this.ChamCongForm).subscribe({
+      next: (data) => {
+        this.DsChamCong = data.items; // Dữ liệu trên trang hiện tại
+        this.totalRecordsCC = data.totalRecords; // Tổng số bản ghi
+        this.loadingCC = false;
+  
+      },
+      error: (err) => {
+        this.loadingCC = false;
+        console.error('Error loading data:', err);
+      }
+    });
+  }
+  LoadFrom(page :number){
+    if(page===1){
+      this.LoadChamCong();
+    }
+    else if (page===0){
+      this.LoadData();
+    }
   }
 }

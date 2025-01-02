@@ -26,4 +26,7 @@ constructor(private http : HttpClient) { }
   xoaNhanVien(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.apiUrl}NhanVien/${id}`);
   }
+  DanhSachChamCong(param :any){
+    return this.http.post<any>(`${environment.apiUrl}NhanVien/GetChamCong`,param);
+  }
 }
