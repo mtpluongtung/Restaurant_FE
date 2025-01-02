@@ -13,6 +13,7 @@ import { BanComponent } from './Components/ban/ban.component';
 import { LoginComponent } from './Components/login/login.component';
 import { AuthGuard } from './_helper/auth.guard';
 import { NhanVienComponent } from './Components/nhan-vien/nhan-vien.component';
+import { CaLamViecComponent } from './Components/ca-lam-viec/ca-lam-viec.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,5 +30,6 @@ export const routes: Routes = [
     { path: 'mon-an', component: MonAnComponent  , canActivate: [AuthGuard]},
     { path: 'set', component: SetComponent  , canActivate: [AuthGuard]},
     { path: 'cau-hinh-ban', component: BanComponent  , canActivate: [AuthGuard]},
-    { path: 'nhan-vien', component: NhanVienComponent  , canActivate: [AuthGuard]}
+    { path: 'nhan-vien', component: NhanVienComponent  , canActivate: [AuthGuard]},
+    { path: 'ca-lam-viec', component: CaLamViecComponent  , canActivate: [AuthGuard]}
 ];

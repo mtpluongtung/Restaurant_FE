@@ -68,7 +68,7 @@
 </div>
 
 
-
+<!-- Thêm sửa nhân viên -->
 <p-dialog header="Thêm nhân viên" [(visible)]="displayDialog" [modal]="true" [style]="{width: '35vw'}">
   <form class="p-fluid">
     <div class="mb-3">
@@ -98,6 +98,25 @@
     <div class="mb-3">
       <label for="capbac" class="form-label">Cấp bậc</label>
       <input id="capbac" type="text" pInputText [(ngModel)]="NhanVien.capBac" class="form-control" name="capbac" />
+    </div>
+    <div class="d-flex justify-content-end mt-4">
+      <p-button label="Hủy" styleClass="p-button-danger me-4" (click)="displayDialog=false"></p-button>
+      <p-button label="Lưu" styleClass="p-button-success" (click)="saveNhanVien()"></p-button>
+    </div>
+  </form>
+
+</p-dialog>
+
+<!-- cập nhật ca làm việc cho nhân viên -->
+<p-dialog header="Gán ca làm việc" [(visible)]="displayDialog" [modal]="true" [style]="{width: '35vw'}">
+  <form class="p-fluid">
+    <div class="mb-3">
+      <label for="name" class="form-label">Họ tên</label>
+      <input id="name" type="text" pInputText [(ngModel)]="NhanVien.tenNhanvien" class="form-control" name="name" readonly/>
+    </div>
+    <div class="mb-3">
+      <label for="manv" class="form-label">Mã nhân viên</label>
+      <input id="manv" type="text" pInputText [(ngModel)]="NhanVien.maNhanvien" class="form-control" name="manv" readonly/>
     </div>
     <div class="d-flex justify-content-end mt-4">
       <p-button label="Hủy" styleClass="p-button-danger me-4" (click)="displayDialog=false"></p-button>

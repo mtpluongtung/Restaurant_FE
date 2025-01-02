@@ -1,0 +1,79 @@
+<p-toast position="top-right" />
+<p-confirmDialog></p-confirmDialog>
+<div class="wrapper p-2 wrapper-content white-bg animated fadeIn mt-4">
+  <div class="row mb-2 d-flex">
+    <div class="col-2">
+      <span>Tìm kiếm</span>
+      <input class="form-control" [(ngModel)]="search.text" name="text" />
+    </div>
+    <div class="col-2 d-flex justify-content-between mt-4">
+      <p-button styleClass="p-button-raised  p-button-success p-button-xs" (click)="LoadData()">Tìm kiếm</p-button>
+    </div>
+    <div class="col-8 d-flex justify-content-end mt-4">
+      <p-button styleClass="p-button-raised p-button-primary p-button-xs me-4"
+        (click)="ThemShowDialog(0)">Thêm</p-button>
+      <p-button styleClass="p-button-raised p-button-warning p-button-xs me-4" (click)="ThemShowDialog(1)">Sửa</p-button>
+      <p-button styleClass="p-button-raised p-button-danger p-button-xs" (click)="Xoa()">Xóa</p-button>
+    </div>
+  </div>
+
+
+  <p-table [columns]="cols" [value]="DsCaLamViec" [paginator]="true" [rows]="25" [totalRecords]="totalRecords"
+    [loading]="loading" (onLazyLoad)="loadDataLazy($event)"
+    currentPageReportTemplate="Hiển thị {first} - {last} trong số {totalRecords} bản ghi"
+    scrollHeight="calc(100vh - 20.5rem)" responsiveLayout="scroll" styleClass="p-datatable-gridlines p-datatable-sm"
+    [(selection)]="selectedItem" dataKey="id" [scrollable]="true" showGridlines>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="grid_header_color sticky_header"
+          [ngStyle]="{'width': '10px', 'text-align': 'center', 'min-height':'50px'}">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th class="grid_header_color sticky_header" *ngFor="let col of columns"
+          [ngStyle]="{'width': col.width, 'text-align': 'center', 'min-height':'50px'}">
+          {{col.title}}
+        </th>
+        <!-- <th class="grid_header_color sticky_header"> Tác vụ</th> -->
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+      <tr>
+        <td [ngStyle]="{'height': '5px','width': '10px', 'text-align': 'center'}">
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+
+        <td *ngFor="let col of columns" [ngSwitch]="col.field" style="text-align: center;">
+          <div *ngSwitchCase="'stt'">
+            <p>{{ index +1}}</p>
+          </div>
+          <p *ngSwitchDefault> {{ rowData[col.field] }}</p>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
+
+<p-dialog header="Cập nhật ca làm việc" [(visible)]="displayDialog" [modal]="true" [style]="{width: '35vw'}">
+  <form class="p-fluid">
+    <div class="mb-3">
+      <label for="tenCa" class="form-label">Tên ca làm việc</label>
+      <input id="tenCa" type="text" pInputText [(ngModel)]="caLamViec.loaiCa" class="form-control" name="name" />
+    </div>
+    <div class="mb-3">
+      <label for="gioBatDauCa" class="form-label">Thời gian bắt đầu</label>
+      <input id="gioBatDauCa" type="number" pInputText [(ngModel)]="caLamViec.gioBatDauCa" class="form-control" name="gioBatDauCa" />
+    </div>
+    <div class="mb-3">
+      <label for="gioKetThucCa" class="form-label">Thời gian kết thúc</label>
+      <input id="gioKetThucCa" type="number" pInputText [(ngModel)]="caLamViec.gioKetThucCa" class="form-control" name="gioKetThucCa" />
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <p-button label="Hủy" styleClass="p-button-danger me-4" (click)="displayDialog=false"></p-button>
+      <p-button label="Lưu" styleClass="p-button-success" (click)="saveCaLamViec()"></p-button>
+    </div>
+  </form>
+
+</p-dialog>

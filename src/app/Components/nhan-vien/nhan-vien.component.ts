@@ -71,19 +71,22 @@ export class NhanVienComponent implements OnInit {
         items: [
           {
             label: 'Tạo ca làm việc',
-            icon: 'pi pi-cart-arrow-down'
-          },
-          {
-            label: 'Tạo URL Checkin',
             icon: 'pi pi-list-check'
           },
           {
-            label: 'Tạo URL CheckOut',
-            icon: 'pi pi-dollar'
+            label: 'Tạo URL Checkin',
+            icon: 'pi pi-link',
+            command: () => {
+              this.GenURLCheckin();
+            }
           },
           {
-            label: 'Tạo Châm công Nhân viên',
-            icon: 'pi pi-dollar'
+            label: 'Tạo URL CheckOut',
+            icon: 'pi pi-directions'
+          },
+          {
+            label: 'Tạo chấm công nhân viên',
+            icon: 'pi pi-calendar'
           },
           {
             label: 'Tổng hợp công',
@@ -196,5 +199,7 @@ export class NhanVienComponent implements OnInit {
       }
     });
   }
-
+  GenURLCheckin() {
+    console.log('GenURLCheckin', this.currentIteselected );
+  }
 }
