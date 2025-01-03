@@ -38,7 +38,7 @@
         <div class="food-item-action">
           <button *ngIf="item.type===2" class="btn btn-outline-primary" (click)="ShowDanhSachMonAn(item.id)">Xem danh
             sách món</button>
-          <button class="btn btn-outline-primary" [ngStyle]=" { 'margin-left': '20px' } "
+          <button class="btn btn-outline-primary" [ngStyle]=" item.type===2 ? { 'margin-left': '20px' } : {}"
             (click)="ThemVaoOrder(item)">Thêm vào
             order</button>
         </div>
@@ -76,4 +76,5 @@
     </div>
   </ng-template>
 </p-dialog>
+
 

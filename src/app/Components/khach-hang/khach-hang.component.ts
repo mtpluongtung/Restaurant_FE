@@ -38,6 +38,7 @@ export class KhachHangComponent implements OnInit {
     type: 0,
     monAn: []
   };
+  IsComfirmOrder: boolean = false;
   hoadon: HoaDon = {
     maHoaDon: '',
     banId: 0,
@@ -53,7 +54,8 @@ export class KhachHangComponent implements OnInit {
   selectedOrder: any[] = [];
   sections: any = [];
   showWarning: boolean = false;
-    apiURL = environment.apiUrl;
+  apiURL = environment.apiUrl;
+  CurrentFoodOrder:any ={}
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -165,39 +167,9 @@ export class KhachHangComponent implements OnInit {
     });
   }
   ThemVaoOrder(item: Menu) {
-
-    let index = this.hoadon.set.findIndex((x) => x.setId === item.id);
-    if (item.type === FoodType.BUFFE && index < 0) {
-      let set = new SetItem({
-        setId: item.id,
-        soLuong: this.slKhachHang,
-        thanhTien: item.gia * this.slKhachHang,
-        name: item.name,
-        gia: item.gia
-      });
-      this.hoadon.set.push(set);
-    }
-    if (item.type === FoodType.MON_AN) {
-      let index = this.hoadon.monAn.findIndex((x) => x.monAnId === item.id);
-      if (index > -1) {
-        console.log('zzz', item)
-        this.hoadon.monAn[index].soLuong += item.count;
-        this.hoadon.monAn[index].thanhTien += item.gia * item.count;
-      }
-      else {
-        let monAn = new MonAnItem({
-          monAnId: item.id,
-          soLuong: item.count,
-          thanhTien: item.gia * item.count,
-          name: item.name,
-          gia: item.gia
-        });
-        this.hoadon.monAn.push(monAn);
-      }
-      item.count = 0;
-
-    }
-    this.SumHoaDon();
+    this.IsComfirmOrder = true;
+    this.CurrentFoodOrder = item;
+    console.log(this.CurrentFoodOrder)
   }
   GoiMon() {
     let data = this.setInMenu.monAn.filter((mon: any) => mon.soLuong > 0);

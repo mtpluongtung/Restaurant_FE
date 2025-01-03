@@ -104,7 +104,7 @@ export class MenuComponent implements OnInit {
       });
       this.hoadon.set.push(set);
     }
-    if (item.type === FoodType.MON_AN) {
+    if (item.type === FoodType.MON_AN || item.type === FoodType.DO_UONG) {
       let index = this.hoadon.monAn.findIndex((x) => x.monAnId === item.id);
       if (index > -1) {
         console.log('zzz', item)

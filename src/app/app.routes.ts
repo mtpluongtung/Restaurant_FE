@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: 'dat-ban', component: DatBanComponent , canActivate: [AuthGuard]},
     { path: 'menu/:maOrder/:banId/:slkh', component: MenuComponent  , canActivate: [AuthGuard]},
     { path: 'menu', component: MenuComponent  , canActivate: [AuthGuard]},
-    { path: 'admin', component: AdminComponent  , canActivate: [AuthGuard]},
+    { path: 'admin', component: HomeComponent  , canActivate: [AuthGuard]},
     { path: 'hoa-don', component: HoadonComponent , canActivate: [AuthGuard]},
     { path: 'bep', component: BepComponent  , canActivate: [AuthGuard]},
     { path: 'doanh-thu', component: DoanhThuComponent , canActivate: [AuthGuard] },

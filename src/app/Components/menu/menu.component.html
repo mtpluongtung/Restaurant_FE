@@ -35,11 +35,12 @@
           </div>
         </div>
         <div class="food-item-action">
-          <div *ngIf="item.type===0" class="food-item-total">
-              <button class="btn btn-outline-primary" (click)="addFood(item)">+</button>
-              <input type="number" value="{{item.count}}"  style="margin-left: 15px;" disabled>
-              <button class="btn btn-outline-danger" style="padding-left:15px; margin-left: 15px;" (click)="Remove(item)">-</button>
+          <div *ngIf="item.type !== 2" class="food-item-total">
+              <p-button  [style]="{'height':'35px', 'width' :'35px','font-weight' :'bold'}" label="+" [raised]="true" severity="danger" (click)="addFood(item)"/>
+              <input type="text" value="{{item.count}}"  style="margin-left: 15px; color: black;" disabled>
+              <p-button [style]="{'height':'35px', 'width' :'35px', 'font-weight' :'bold'}" label="-" [raised]="true" severity="secondary" (click)="Remove(item)"/>
           </div>
+
           <button  *ngIf="item.type===2" class="btn btn-outline-primary"  (click)="ShowDanhSachMonAn(item.id)">Xem danh
             sách món</button>
           <button class="btn btn-outline-primary" [ngStyle]=" { 'margin-left': '20px' } " (click)="ThemVaoOrder(item)">Thêm vào

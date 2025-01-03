@@ -123,14 +123,15 @@ li a:hover {
   border-radius: 50% !important;
 }
 .food-item-total input {
-  width: 50px;
-  background-color: #2b2b40;
+  width: 35px;
   color: white;
   border: solid 1px #ffff;
   text-align: center;
   border-radius: 5px;
   text-overflow: inherit;
   height: 35px;
+  border: solid 1px #2e2929;
+  margin-right: 15px;
 }
 .food-item-total {
   display: inline-block;
