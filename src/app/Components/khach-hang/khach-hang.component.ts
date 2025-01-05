@@ -167,10 +167,23 @@ export class KhachHangComponent implements OnInit {
     });
   }
   ThemVaoOrder(item: Menu) {
-    this.IsComfirmOrder = true;
-    this.CurrentFoodOrder = item;
-    console.log(this.CurrentFoodOrder)
+   if(item.type === FoodType.DO_UONG || item.type === FoodType.MON_AN){
+       var request = {
+          maOrder: this.orderId,
+          IdMonAn: item.id,
+          SoLuong: item.count,
+          ThanhTien: item.count * item.gia
+       };
+       this.orderService.GoiMonTinhTien(request).subscribe((res: any) => {
+        this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Gọi món thành công' });
+        this.signalRService.sendMessage("Có order mới");
+        this.visible = false;
+        item.count=0;
+      }, err => {
+        this.messageService.add({ severity: 'error', summary: 'Thất bại', detail: err.error.Message });
+      });
   }
+}
   GoiMon() {
     let data = this.setInMenu.monAn.filter((mon: any) => mon.soLuong > 0);
     let monAnRequest = [];

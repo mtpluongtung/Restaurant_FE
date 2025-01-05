@@ -12,7 +12,7 @@
     <div class="col-8 d-flex justify-content-end mt-4">
       <p-button styleClass="p-button-raised p-button-primary p-button-xs me-4"
         (click)="ThemShowDialog(0)">Thêm</p-button>
-      <!-- <p-button styleClass="p-button-raised p-button-warning p-button-xs me-4" (click)="ThemShowDialog(1)">Sửa</p-button> -->
+      <p-button styleClass="p-button-raised p-button-warning p-button-xs me-4" (click)="ThemShowDialog(1)">Sửa</p-button>
       <p-button styleClass="p-button-raised p-button-danger p-button-xs" (click)="Xoa()">Xóa</p-button>
     </div>
   </div>
@@ -70,20 +70,19 @@
 
 
 
-<p-dialog header="Thêm bàn" [(visible)]="displayDialog" [modal]="true" [style]="{width: '35vw'}">
+<p-dialog header="Cập nhật bàn" [(visible)]="displayDialog" [modal]="true" [style]="{width: '35vw'}">
   <form class="p-fluid">
     <div class="mb-3">
       <label for="tenban" class="form-label">Tên</label>
-      <input id="tenban" type="text" pInputText [(ngModel)]="ban.TenBan" class="form-control" name="name" />
+      <input id="tenban" type="text" pInputText [(ngModel)]="ban.tenBan" class="form-control" name="name" />
     </div>
     <div class="mb-3">
       <label for="gia" class="form-label">Tầng</label>
-      <input id="gia" type="text" pInputText [(ngModel)]="ban.Tang" class="form-control" name="price" />
+      <input id="gia" type="text" pInputText [(ngModel)]="ban.tang" class="form-control" name="price" />
     </div>
     <div class="d-flex justify-content-end mt-4">
       <p-button label="Hủy" styleClass="p-button-danger me-4" (click)="displayDialog=false"></p-button>
       <p-button label="Lưu" styleClass="p-button-success" (click)="saveban()"></p-button>
     </div>
   </form>
-
 </p-dialog>

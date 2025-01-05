@@ -75,6 +75,7 @@ export class SetComponent implements OnInit {
   DsMonAn : any[] = [];
   selectedItemMonAn : any = [];
   DsMonAnSelected : any = []; 
+  set : any ={};
   constructor(private setServices: SetService, private messageService: MessageService, private confirmationService : ConfirmationService, private monAnServices : MonAnService)  { }
 
   ngOnInit() {
@@ -154,24 +155,26 @@ export class SetComponent implements OnInit {
     });
   }
   ThemShowDialog(type: number) {
-
     if (type == 1 && this.selectedItem.length != 1) {
       this.messageService.add({ severity: 'error', summary: 'Lỗi', detail: 'Vui lòng chọn 1 món ăn' });
       return;
     }
     if (type == 1 && this.selectedItem.length == 1) {
-      this.monAn.id = this.selectedItem[0].id;
-      this.monAn.loai = this.selectedItem[0].loai.toString();
-      this.monAn.gia = this.selectedItem[0].gia;
-      this.monAn.tenMonAn = this.selectedItem[0].name;
-      this.monAn.url = this.selectedItem[0].url;
+      this.set.id = this.selectedItem[0].id;
+      this.set.gia = this.selectedItem[0].gia;
+      this.set.name = this.selectedItem[0].name;
+      this.set.url = this.selectedItem[0].url;
+      this.DsMonAnSelected= this.selectedItem[0].monAn;
     }
+
     this.displayDialog = true;
   }
+
   saveMonAn() {
     let fromData = new FormData();
-    fromData.append('Name', this.monAn.tenMonAn);
-    fromData.append('Gia', this.monAn.gia.toString());
+    fromData.append('Id', this.set.id);
+    fromData.append('Name', this.set.name);
+    fromData.append('Gia', this.set.gia.toString());
     fromData.append('File', this.uploadedFiles[0]);
     for (let key of this.DsMonAnSelected) {
       fromData.append('MonAn', key.id)
@@ -227,8 +230,12 @@ export class SetComponent implements OnInit {
     }
   }
   ChonMonAn(){
-    this.DsMonAnSelected = this.selectedItemMonAn;
+    for(let item of this.selectedItemMonAn){
+      this.DsMonAnSelected.push(item);
+    }
+    
     this.ShowDsMonAn = false;
+    console.log(this.DsMonAnSelected);
   }
   XoaMonAn(data:any){
     if (Array.isArray(this.DsMonAnSelected)) {

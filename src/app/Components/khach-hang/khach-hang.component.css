@@ -249,9 +249,11 @@
           font-size: 15px;
       }
       ::ng-deep.p-dialog .p-dialog-header{
-          padding: 30px;
+          padding: 10px;
       }
-     
+      ::ng-deep.p-dialog .p-dialog-footer{
+        padding: 10px;
+    }
     }
   @media (max-width: 844px) {
     .food-item {
@@ -261,9 +263,19 @@
         font-size: 15px;
     }
     ::ng-deep.p-dialog .p-dialog-header{
-        padding: 30px;
+      padding: 10px;
     }
-   
+    ::ng-deep.p-dialog .p-dialog-footer{
+      padding: 10px !important;
+  }
+  ::ng-deep.p-dialog{
+    height: 100vh;
+  }
+  }
+  @media (max-width: 480px) {
+   .card {
+    width: 160px;
+   }
   }
 
 }

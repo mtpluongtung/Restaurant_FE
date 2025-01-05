@@ -12,8 +12,8 @@
     <div class="col-8 d-flex justify-content-end mt-4">
       <p-button styleClass="p-button-raised p-button-primary p-button-xs me-4"
         (click)="ThemShowDialog(0)">Thêm</p-button>
-      <!-- <p-button styleClass="p-button-raised p-button-warning p-button-xs me-4"
-        (click)="ThemShowDialog(1)">Sửa</p-button> -->
+      <p-button styleClass="p-button-raised p-button-warning p-button-xs me-4"
+        (click)="ThemShowDialog(1)">Sửa</p-button>
       <p-button styleClass="p-button-raised p-button-danger p-button-xs" (click)="Xoa()">Xóa</p-button>
     </div>
   </div>
@@ -65,17 +65,17 @@
 
 
 
-<p-dialog header="Thêm Set" [(visible)]="displayDialog" [modal]="true" [style]="{width: '60vw'}">
+<p-dialog header="Cập nhật set" [(visible)]="displayDialog" [modal]="true" [style]="{width: '60vw' , height: '95vh'}">
   <form class="p-fluid">
     <div class="wrapper border p-2 wrapper-content white-bg animated fadeIn mt-4">
       <div class="row ">
         <div class="col-4">
           <label for="tenMonAn" class="form-label">Tên</label>
-          <input id="tenMonAn" type="text" pInputText [(ngModel)]="monAn.tenMonAn" class="form-control" name="name" required=""/>
+          <input id="tenMonAn" type="text" pInputText [(ngModel)]="set.name" class="form-control" name="name" required=""/>
         </div>
         <div class="col-4">
           <label for="gia" class="form-label">Giá</label>
-          <input id="gia" type="number" pInputText [(ngModel)]="monAn.gia" class="form-control" name="price" required=""/>
+          <input id="gia" type="number" pInputText [(ngModel)]="set.gia" class="form-control" name="price" required=""/>
         </div>
       </div>
       <div class="row mt-2">
@@ -83,7 +83,7 @@
           [multiple]="false" accept="image/*" maxFileSize="1000000" mode="advanced">
           <ng-template #empty>
             <div>Chọn hình ảnh.</div>
-            <img *ngIf="monAn.url" [src]="monAn.url" alt="Hình ảnh món ăn" class="img-fluid mb-2"
+            <img *ngIf="set.url" [src]="apiURL + set.url" alt="Hình ảnh món ăn" class="img-fluid mb-2"
               style="max-width: 200px;" />
           </ng-template>
           <ng-template #content>

@@ -142,10 +142,8 @@ export class BanComponent implements OnInit {
     }
     if (type == 1 && this.selectedItem.length == 1) {
       this.ban.id = this.selectedItem[0].id;
-      this.ban.loai = this.selectedItem[0].loai.toString();
-      this.ban.gia = this.selectedItem[0].gia;
-      this.ban.tenban = this.selectedItem[0].name;
-      this.ban.url = this.selectedItem[0].url;
+      this.ban.tenBan = this.selectedItem[0].tenBan;
+      this.ban.tang = this.selectedItem[0].tang;
     }
     this.displayDialog = true;
   }

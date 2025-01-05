@@ -34,4 +34,7 @@ export class OrderService {
   GoiMon(data: any) {
     return this.http.post<any>(`${this.apiUrl}Order/goi-mon`, data);
   }
+  GoiMonTinhTien(data: any) {
+    return this.http.post<any>(`${this.apiUrl}Order/goi-mon-tinh-tien`, data);
+  }
 }
