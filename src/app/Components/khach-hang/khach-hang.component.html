@@ -16,34 +16,38 @@
   </div>
   <div class="memu-item" (scroll)="onScroll($event)">
     <div class="food-item border p-2 section" *ngFor="let item of menulist" [id]="getIdForType(item.type)">
-      <img src="{{apiURL + item.url}}" class="w-lg-225px rounded w-50">
+      <img src="{{apiURL + item.url}}" class="w-lg-225px rounded">
       <div class="food-item-card card card-hover-border">
         <div class="food-item-details">
           <div class="d-flex flex-stack gap-5">
             <div class="d-flex flex-stack gap-2 mb-1">
-              <span class="text-white  mb-3 fs-5 fw-bold">
+              <span class="text-white  mb-3 fw-bold text-food">
                 {{getTypeName(item.type)}}
               </span>
 
             </div>
           </div>
-          <div class="text-white mb-3 fs-1 fw-bold">
+          <div class="text-white mb-3 text-food">
             <span class="mx-10">{{item.name}}</span>
           </div>
-          <div class="d-flex align-items-center text-white mb-10 max-w-70px h-70px fw-bold"
+          <div class="d-flex align-items-center text-white mb-10 max-w-70px h-70px fw-bold backgroud-img"
             style="background: url('images/Frame-price.png'); background-repeat: no-repeat; padding: 8px 16px; font-size: 22px !important; height: 70px;">
             <span class="mx-10">{{item.gia |currency: 'VND'}} VND / Người</span>
           </div>
+          <span class="text-food text-food-price" >{{item.gia |number}} VND  {{item.type == 2 ? '/ Người' : ''}}</span>
         </div>
         <div class="food-item-action">
           <div *ngIf="item.type !== 2" class="food-item-total">
-            <p-button  [style]="{'height':'35px', 'width' :'35px','font-weight' :'bold'}" label="+" [raised]="true" severity="danger" (click)="addFood(item)"/>
-            <input type="text" value="{{item.count}}"  style="margin-left: 15px; color: black;" disabled>
-            <p-button [style]="{'height':'35px', 'width' :'35px', 'font-weight' :'bold'}" label="-" [raised]="true" severity="secondary" (click)="Remove(item)"/>
-        </div>
-          <button *ngIf="item.type===2" class="btn btn-outline-primary" (click)="ShowDanhSachMonAn(item.id)">Xem danh
+            <p-button [style]="{'height':'35px', 'width' :'35px','font-weight' :'bold'}" label="+" [raised]="true"
+              severity="danger" (click)="addFood(item)" />
+            <input type="text" value="{{item.count}}" style="margin-left: 15px; color: black;" disabled>
+            <p-button [style]="{'height':'35px', 'width' :'35px', 'font-weight' :'bold'}" label="-" [raised]="true"
+              severity="secondary" (click)="Remove(item)" />
+          </div>
+          <button *ngIf="item.type===2" class="btn btn-outline-primary text-food"
+            (click)="ShowDanhSachMonAn(item.id)">Danh
             sách món</button>
-          <button class="btn btn-outline-primary" [ngStyle]="{ 'margin-left': '20px' }"
+          <button  *ngIf="item.type!==2" class="btn btn-outline-primary text-food" [ngStyle]="{ 'margin-left': '20px' }"
             (click)="ThemVaoOrder(item)">Gọi món</button>
         </div>
       </div>
@@ -53,32 +57,34 @@
 </div>
 
 <!-- danh sách món ăn trong buffe -->
-<p-dialog [modal]="true" [(visible)]="visible">
-  <ng-template #header >
+<p-dialog [modal]="true" [(visible)]="visible" >
+  <ng-template #header>
     <div>
       <span>{{setInMenu.name}}</span>
     </div>
   </ng-template>
-  <div class="row gap-2">
-    <div class="card col-sm-4 p-2 d-flex justify-content-end" *ngFor="let monAn of setInMenu.monAn">
+  <div class="row d-flex gap-2 flex-wrap">
+    <div class="card item-food-set p-2 d-flex justify-content-end" style="width: 30%; max-width: 200px;" *ngFor="let monAn of setInMenu.monAn">
       <img src="{{apiURL + monAn.url}}" class="w-lg-225px rounded w-50">
       <span>{{monAn.name}}</span>
       <div class="food-item-total">
-        <p-button  [style]="{'height':'35px', 'width' :'35px', 'font-weight' :'bold'}" label="-" [raised]="true" severity="secondary" (click)="RemoveFoodCache(monAn)"/>
+        <p-button [style]="{'height':'35px', 'width' :'35px', 'font-weight' :'bold'}" label="-" [raised]="true"
+          severity="secondary" (click)="RemoveFoodCache(monAn)" />
         <input type="number" value="{{monAn.soLuong}}" style="margin-left: 15px; color: black;" disabled>
-        <p-button [style]="{'height':'35px', 'width' :'35px','font-weight' :'bold'}" label="+" [raised]="true" severity="danger" (click)="addFoodCache(monAn)" />
+        <p-button [style]="{'height':'35px', 'width' :'35px','font-weight' :'bold'}" label="+" [raised]="true"
+          severity="danger" (click)="addFoodCache(monAn)" />
       </div>
     </div>
   </div>
+  
   <ng-template #footer>
     <span>{{setInMenu.gia | number }}đ / người</span>
     <div>
       <button label="Quay lại" severity="secondary" class="btn btn btn-danger" (click)="GoiMon()">Gọi
         món</button>
-      <button label="Quay lại" severity="secondary" class="btn btn btn-warning" style="margin-left: 15px;" (click)="visible = false">Quay
+      <button label="Quay lại" severity="secondary" class="btn btn btn-warning" style="margin-left: 15px;"
+        (click)="visible = false">Quay
         lại</button>
     </div>
   </ng-template>
 </p-dialog>
-
-

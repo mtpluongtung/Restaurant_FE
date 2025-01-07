@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         this.submitted = false;
         if (data.flag) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/dat-ban']);
         }
         else{
           this.messageService.add({ severity: 'error', summary: 'Lỗi', detail: 'Vui lòng chọn ca' });
